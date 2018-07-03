@@ -1,1 +1,43 @@
-theme: jekyll-theme-minimal
+# --- General options --- #
+lang: en
+title: racineennis.ca
+email: racine.ennis@gmail.com
+description: "A blog about software and technology"
+url: "https://racineennis.ca"
+author:
+  name: Racine Ennis
+  picture: /assets/icons/racineennis.png
+google_analytics: UA-121767683-1
+
+github_username: RaySceneNS
+logo: /assets/icons/logo.svg
+
+#Search settings
+search: true
+search_full_content: false
+search_provider: lunr 
+
+# Build settings
+markdown: kramdown
+remote_theme: "mmistakes/jekyll-theme-basically-basic"
+plugins: # previsously gems
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+feed:
+  path: atom.xml
+
+# Pagination - https://jekyllrb.com/docs/pagination/
+paginate: 10
+paginate_path: /page:num/
+
+# Front Matter Defaults
+defaults:
+  # _posts
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: post
+      read_time: true
