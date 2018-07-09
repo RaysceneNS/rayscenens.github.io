@@ -1,7 +1,10 @@
+---
+layout: post
+title: Levenshtein Edit Distance Algorithm
+tags: [Algorithms]
+---
+
 # Edit Distance Algorithms
-
-## What are they? 
-
 Edit distance algorithms are a mechanism that quantify how different two strings are. 
 
 ## Why do I care?
