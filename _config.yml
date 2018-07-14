@@ -14,7 +14,7 @@ logo: /assets/icons/logo.svg
 
 #Search settings
 search: true
-search_full_content: false
+search_full_content: true
 search_provider: lunr 
 
 # Build settings
@@ -40,4 +40,4 @@ defaults:
       type: posts
     values:
       layout: post
-      read_time: true
+      read_time: false

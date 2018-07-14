@@ -5,9 +5,11 @@ tags: [Algorithms]
 ---
 
 # Edit Distance Algorithms
-Edit distance algorithms are a mechanism that quantify how different two strings are. 
 
-## Why do I care?
+Edit distance algorithms are a mechanism that quantify how different two strings are.
+
+## The Scenario
+
 Let's use a hypothetical scenario to illustrate how an Edit Distance algorithm can be useful.
 
 1. Users in your Sales department create an application in Excel that records  a business deal. Values are input into cells of a spreadsheet to record products and where to send them.
@@ -23,7 +25,8 @@ Using the Levenshtein  Edit Distance algorithm tells us the minimum number of ke
 
 So to edit the string 'Vancouve' -> 'Vancouver' requires us to insert 1 character.
 
-Here is the method in c# 
+Here is the method in c#
+
 ```c#
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

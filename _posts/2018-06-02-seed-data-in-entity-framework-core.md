@@ -4,6 +4,8 @@ title: How-to seed data in an Entity Framework Core 2.0 project
 tags: [Entity Framework, .Net Core]
 ---
 
+# Seeding data in Entity Framework Core
+
 Recently I was playing around with Entity Framework Core. And needed to seed some data, but found that the seeding support has changed quite a bit from how it was setup in Entity Framework 6.
 
 We need to call SeedData.Initialize passing in a data context, like so.
