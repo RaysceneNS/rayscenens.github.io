@@ -1,7 +1,8 @@
 ---
 layout: post
 title: USB Graphing meter from Digispark
-tags: [Arduino, Microcontroller]
+excerpt: "Graphing meters are a tool that record voltage levels over time. I only needed one for a short time, so I turned a DigiSpark into one."
+tags: [Arduino, Micro controller]
 ---
 
 # USB Graphing meter from Digispark

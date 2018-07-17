@@ -1,6 +1,7 @@
 ---
 layout: post
 title: RemoveWhere() a handy EF extension.
+excerpt: "Mark entities in your DBSet for deletion using a filter predicate can make your code more readable."
 tags: [Entity Framework]
 ---
 

@@ -1,7 +1,8 @@
 ---
 layout: post
-title: A gear position indicator from ATTiny84
-tags: [Microcontroller]
+title: Make. Homebrew Gear Position Indicator
+excerpt: "Sometimes you can't buy the exact thing you want from a store, those are great situations. Let me show you a hardware project where I designed the circuit and coded the firmware."
+tags: [Micro controller]
 ---
 
 # Gear Position Indicator
@@ -12,7 +13,7 @@ I have a second generation Suzuki SV650, this is a bike that was built to a budg
 
 ## Attempt to throw money at the problem
 
-Now there are commercial products out there that can be bought and clipped in place, but I wa never keen on the look. See for yourself the commercial options use a bright (read distracting at night) Led digit. And the display colors don't mesh with the factory gauges.
+Now there are commercial products out there that can be bought and clipped in place, but I wa never keen on the look. See for yourself, the commercial options use a bright (read distracting at night) LED digit. And the display colors don't mesh with the factory gauges.
 ![Alternate Product](/assets/images/2018/03/18/gipro%20sv.jpg)
 
 ## The Project Goals
@@ -35,7 +36,7 @@ I chose to implement my solution with an ATTiny44 micro controller. This particu
 - *Amazing tooling* Atmel Studio (based on Visual Studio) makes the software writing experience painless
 - Samples galore, many of the code samples and libraries used for arduino development can be modified or at least read for content
 - Enough memory for future expansion, an enormous 4K of flash memory combined with 256 bytes of ram ensure we have room to add new features.
-- Small power budget @ 3.3volts with a 1Mhz clock our power draw is a fraction of the energy required to power the backlight leds.
+- Small power budget @ 3.3volts with a 1Mhz clock our power draw is a fraction of the energy required to power the back light.
 
 ### Power the board
 
@@ -43,13 +44,13 @@ It has been said before but automobiles are not friendly places for micro electr
 
 ### Display
 
-The display needed to be easily read in direct sunlight, (motorcycles don't have roofs), And it needed to be monochrome with the ability to be backlight in amber (to match to OE instrument cluster). The satisfy these requirements a surplus display from a venerable Nokia 5110 was chosen. This display offers a resultion of 84x48 or 504 bytes of addressable display area.
+The display needed to be easily read in direct sunlight, (motorcycles don't have roofs), And it needed to be monochrome with the ability to be back light in amber (to match to OE instrument cluster). The satisfy these requirements a surplus display from a venerable Nokia 5110 was chosen. This display offers a resolution of 84x48 or 504 bytes of addressable display area.
 
 ### Temperature Sensing
 
 The temperature sensor did not need to be super accurate as we would be rounding off the precision to the nearest degree celsius. A MCP9700A was selected for the its reported accuracy of 2 degrees celsius across a range of 0-70 degrees. Combined with an output that returns 10mv/degree would make the software easier to implement.
 
-### The shematic
+### The schematic
 
 The circuit is powered at 3.3v this is a requirement of the LCD screen as the inputs to its driver are not tolerant of higher input voltages. This means that we have to perform a voltage shift of the incoming signal from the bikes transmission indicator line which outs from 0-5v. A 2:1 voltage divider halves the input voltage to a safe level to feed to the ADC.
 
