@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Create Task Asynchronous style calls from Event Handlers
-tags: [Task] [Asynchronsous]
+tags: [Task]
 ---
 
 # Create Task Asynchronous style calls from Event Handlers
