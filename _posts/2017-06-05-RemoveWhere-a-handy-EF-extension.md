@@ -1,11 +1,25 @@
 ---
 layout: post
-title: RemoveWhere() a handy EF extension.
-excerpt: "Mark entities in your DBSet for deletion using a filter predicate can make your code more readable."
+title: Removing entities from DBSets.
+excerpt: "Removing entities from DB Sets in Entity Framework ."
 tags: [Entity Framework]
 ---
 
-# Writing RemoveWhere in EF6
+# Removing entities from Sets in Entity Framework
+
+## Mark Entities for Removal without Prior Retrieval
+
+Usually in order to remove an item from a DBSet in entity framework you need to first query for the entity and then subsequently call delete on the entity. Sometimes all you really want to do is delete the item without incurring the overhead of a query. In this case you can ues the .Attach() method to bypass the entity retrieval.
+
+```c#
+Customer cust = new Customer();
+cust.CustId = "A123";
+db.Customers.Attach(cust);
+db.Customers.Remove(cust);
+db.SaveChanges();
+```
+
+## EF RemoveWhere() extension
 
 This is a small but handy extension method for those times when you are working with Entity Framework and need to remove all items from the DBSet that match a predicate.
 
