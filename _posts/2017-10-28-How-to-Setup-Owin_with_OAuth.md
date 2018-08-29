@@ -23,7 +23,6 @@ Using Azure Active Directory is a great way to offload the task of validating us
  3. Enter the name of our application, select Web app/api for the application type and most importantly enter the sign-on url. This is the base url of your web application e.g. ```https://my.net```
  4. Make note of the Application ID assigned from the wizard, we'll need this later on.
 
-
 ## Install the authorization handler
 
 Next we will install the OpenIdConnect middleware in our Owin pipeline. This package will take care of requests that will be made to our app as a regular part of implementing the Auth flow.

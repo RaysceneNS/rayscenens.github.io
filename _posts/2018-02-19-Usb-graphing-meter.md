@@ -30,7 +30,6 @@ Now if you decide to try this at home there are a few caveats to be aware of:
 - Sample rate, the usable sample rate for the ATTiny is in the 10's of Khz, depending on the clock speed of the micro itself, higher rates will create less accuracy.
 - Voltage limit, the input to the ADC should be no higher than the VCC to the micro controller itself. To get around this we could install a voltage divider, but again accuracy will suffer when using inaccurate resistance values or high division ratios.
 
-
 To setup, you will first need to install the appropriate libraries to allow the Arduino IDE to communicate with the board, the instructions to do this can be found here: [install digispark drivers](https://digistump.com/wiki/digispark/tutorials/connecting)
 
 The code that runs on the device very simply reports back the value contained on the ADC and sends it via the usb port to the host computer. Values are returned as bytes thus the precision is once again sacrificed. The advantage of sending the data this way over say sending a UINT16 is:
