@@ -7,19 +7,19 @@ tags: [ReadyNas]
 
 # How To Install Home Assistant on a ReadyNas
 
-The purpose of this guide is to record the steps required to install Home Assistant on a NetGear ReadyNas running OS 6.9.3. 
+The purpose of this guide is to record the steps required to install Home Assistant on a NetGear ReadyNas running OS 6.9.3.
 
 ## Install Python 3.5.6
 
-Open an SSH terminal and login to your ReadyNas, you will first need to enable the SSH feature within the System - Services area of the ReadyNas admin panel. 
+Open an SSH terminal and login to your ReadyNas, you will first need to enable the SSH feature within the System - Services area of the ReadyNas admin panel.
 
 Home assistant requires a minimum python version of 3.5.6, as of this writing apt-get only makes 3.4.2 available on this system. To get around this issue we need to roll our own python build.
 
 To install the python 3.5.6 from source you will need a working gcc build environment first. The following apt-get will install the libraries required to build python3 as well as load development dependencies for python such as sqlite3.
 
 ```Bash
-apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev 
-libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev 
+apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev
+libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev
 xz-utils tk-dev libffi-dev liblzma-dev
 ```
 
@@ -38,7 +38,7 @@ make
 make install
 ```
 
-On my machine the make install places the output in /usr/local/bin 
+On my machine the make install places the output in /usr/local/bin
 
 Check that python is installed correctly with this command.
 
@@ -48,7 +48,8 @@ python3.5 --version
 
 ## Create a virtual environment to host Home Assistant
 
-Enter the following commands to create a virtual python environment in the /apps directory, then install wheel and homeassistant in this folder.  
+Enter the following commands to create a virtual python environment in the /apps directory, then install wheel and homeassistant in this folder.
+
 ```Bash
 $ cd /apps
 $ python3.5 -m venv homeassistant
@@ -59,6 +60,7 @@ $ python3 -m pip install homeassistant
 ```
 
 Finally check that homeassistant is running by launching it now.
+
 ```Bash
 $ hass
 ```

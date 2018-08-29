@@ -15,7 +15,11 @@ logo: /assets/icons/logo.svg
 #Search settings
 search: true
 search_full_content: true
-search_provider: lunr 
+search_provider: lunr
+
+#Disqus settings
+disqus:
+  shortname: racineennis-ca
 
 # Build settings
 markdown: kramdown

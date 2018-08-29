@@ -29,5 +29,5 @@ bundle install
 To execute the jekyll service.
 
 ```PowerShell
-bundle exec jekyll serve -watch
+bundle exec jekyll serve --watch
 ```

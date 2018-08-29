@@ -100,7 +100,7 @@ export class AppModule { }
 
 ## Server.js /config endpoint
 
-Add the following method to server.js, This provides a server side endpoint that we can call from our client code to gather the server environment settings. We are surfacing specific application settings from the process Environment object and encoding these as json for our client to consume. There is an implicit convention that our client application will make a call to https://[host]/config on the server that hosts the application files.
+Add the following method to server.js, This provides a server side endpoint that we can call from our client code to gather the server environment settings. We are surfacing specific application settings from the process Environment object and encoding these as json for our client to consume. There is an implicit convention that our client application will make a call to <https://[host]/config> on the server that hosts the application files.
 
 ```js
   app.get('/config', function (req, res, next) {

@@ -3,6 +3,7 @@ layout: post
 title: USB Graphing meter from Digispark
 excerpt: "Graphing meters are a tool that record voltage levels over time. I only needed one for a short time, so I turned a DigiSpark into one."
 tags: [Arduino, Micro controller]
+comments: true
 ---
 
 # USB Graphing meter from Digispark
@@ -25,7 +26,7 @@ Did I mention these things are small?
 Now if you decide to try this at home there are a few caveats to be aware of:
 
 - first off this is not a precision device. The accuracy of the readings is effected by the power regulation supplying the micro controller, in our case a non precision power supply is feeding the controller via our laptops USB port so expected some differences here depending on make and model of the host machine.
-- The device offers **zero** input protection, this is a shortfall that I may address in the future. Vehicles are electrical hell, voltages dip during crank or spike when inductive loads like relays and motors turn off, ignition coils operate at thousands of volts and produce all sorts of noise. You can and probably will feed something nasty through the usb port back to your computer.  A good circuit design would include some sort of voltage limiting device to clamp transient spikes.  
+- The device offers **zero** input protection, this is a shortfall that I may address in the future. Vehicles are electrical hell, voltages dip during crank or spike when inductive loads like relays and motors turn off, ignition coils operate at thousands of volts and produce all sorts of noise. You can and probably will feed something nasty through the usb port back to your computer.  A good circuit design would include some sort of voltage limiting device to clamp transient spikes.
 - Sample rate, the usable sample rate for the ATTiny is in the 10's of Khz, depending on the clock speed of the micro itself, higher rates will create less accuracy.
 - Voltage limit, the input to the ADC should be no higher than the VCC to the micro controller itself. To get around this we could install a voltage divider, but again accuracy will suffer when using inaccurate resistance values or high division ratios.
 
