@@ -10,12 +10,14 @@ Alberta, Saskatchewan, and parts of Manitoba and parts of British Columbia are m
 
 ### Breakdown of DLS Identifier
 
- Given the location: 04-11-082-04W6
- Legal Sub division	:04
- Section				:11
- Township			:082
- Range				:04
- Meridian			:W6
+ Given the location: _04-11-082-04W6_
+| Part | Value |
+|---|---|
+| Legal Sub division | 04|
+| Section | 11|
+| Township | 082|
+| Range | 04|
+| Meridian | W6|
 
 #### Legal Sub division (LSD)
 
@@ -159,4 +161,4 @@ Finally, each unit is subdivided into 4 quarter units labeled A, B, C, and D, st
   C|D
   B|A
 
-Anyhow, the project files can be downloaded from (GitHub)[https://github.com/RaysceneNS/GisLibrary]
+Anyhow, the project files can be downloaded from [GitHub](https://github.com/RaysceneNS/GisLibrary)
