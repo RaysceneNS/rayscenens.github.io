@@ -15,7 +15,7 @@ Open an SSH terminal and login to your ReadyNas, you will first need to enable t
 
 Home assistant requires a minimum python version of 3.5.6, as of this writing apt-get only makes 3.4.2 available on this system. To get around this issue we need to roll our own python build.
 
-To install the python 3.5.6 from source you will need a working gcc build environment first. The following apt-get will install the libraries required to build python3 as well as load development dependencies for python such as sqlite3.
+To install the python 3.5.6 from source you will need a working GCC build environment first. The following apt-get will install the libraries required to build python3 as well as load development dependencies for python such as sqlite3.
 
 ```Bash
 apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev
@@ -65,7 +65,7 @@ Finally check that homeassistant is running by launching it now.
 $ hass
 ```
 
-## autostart service via systemd
+## Autostart service via systemd
 
 It is recommended to create a system user to launch the service as.
 

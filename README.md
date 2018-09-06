@@ -20,13 +20,13 @@ Install bundler (allow network access if prompted)
 gem install bundler
 ```
 
-Install jekyll and any dependencies.
+Install Jekyll and any dependencies.
 
 ```PowerShell
 bundle install
 ```
 
-To execute the jekyll service.
+To execute the Jekyll service.
 
 ```PowerShell
 bundle exec jekyll serve --watch

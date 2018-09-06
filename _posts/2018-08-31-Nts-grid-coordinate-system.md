@@ -62,14 +62,14 @@ Township lines are numbered from the base meridian @ 49 degrees (Majority of Can
 
 #### Meridians
 
-Meridians, the first or prime meridian was established just west of winnipeg. There are a total of 8 western meridians as shown below. However the library only maps sections in meridians 1-6.
+Meridians, the first or prime meridian was established just west of Winnipeg. There are a total of 8 western meridians as shown below. However the library only maps sections in meridians 1-6.
 
 | Longitude | Name |
 |---|---|
 | 97° 27' 28.4" | W1M (a.k.a Prime Meridian) |
 | 102° | W2M |
 | 106° | W3M |
-| 110° | W4M (Sask-Alberta Border) |
+| 110° | W4M (Saskatchewan-Alberta Border) |
 | 114° | W5M |
 | 118° | W6M |
 | 122° | W7M |
@@ -79,7 +79,7 @@ Meridians, the first or prime meridian was established just west of winnipeg. Th
 
 One of the problems that comes up when working with the DLS Survey system is that the townships are not referenced to geographic coordinates. In order to tell if a given location is within a coordinate you must lookup the survey data for the township and then perform a geometry calculation to determine if a point is within the boundary of that township. This means that any library that can be used to convert between geographic coordinates and the DLS survey must have access to all of the known township boundary points to be effective.
 
-There are more than 15,000 townships of 6x6 miles across western canada.
+There are more than 15,000 townships of 6x6 miles across Western Canada.
 Most townships have a total of 36 sections with 4 markers defined for each of the corners. This gives 144 coordinates for every township.
 
 One of the goals of this project was to build a library that could be used without a dependency on a database engine. So I thought about all of the ways that the storage of this information could be made most efficient so that it could be included as a resource section within the library directly.
@@ -94,7 +94,7 @@ var key = (ushort)((uint)(meridian << 13 | range << 7) | township);
 
 ### Township block encoding
 
-You may be wondering why we don't encode the section numbers in our township, I chose to write the township blocks using a fixed layout starting at section 1 and moving to section 36, each section writes the coordinates using a fixed encoding of [se,sw,ne,nw]. This method allows us to use a simple offset calculation to move to the coordinate that we require. For example to lookup the NorthEast coordinate of section 27 we use an offset of `((27-1) * 8) + 6 = 214.`
+You may be wondering why we don't encode the section numbers in our township, I chose to write the township blocks using a fixed layout starting at section 1 and moving to section 36, each section writes the coordinates using a fixed encoding of coordinates in counter clockwise winding staring with the SouthEast quadrant i.e [SE,SW,NE,NW]. This method allows us to use a simple offset calculation to move to the coordinate that we require. For example to lookup the NorthEast coordinate of section 27 we use an offset of `((27-1) * 8) + 6 = 214.`
 
 ### Further Compression
 
@@ -102,8 +102,8 @@ At this point our dataset is near 20MB in total, to further reduce the informati
 
 ## British Columbia Geographic System
 
-The British Columbia Geographic System (BCGS) Sometimes this is refered to as NTS - National Topographic System, the system upon which BCGS is based. This system is aligned with geographic coordinates and as such it is trivial to convert between geographic coordinates and BCGS. Identifiers are written with the following convention : _B-001-L/093-F-10_
-Where 'B' is the quarter unit, '001' is the unit, 'L' is the block, 093 is the series, F is the map area, and 10 is the sheet. Note that the string after the '/' character is the same code that would be used in an Nts survey identifier to represent a map at 1:20,000 scale.
+The British Columbia Geographic System (BCGS) Sometimes this is referred to as NTS - National Topographic System, the system upon which BCGS is based. This system is aligned with geographic coordinates and as such it is trivial to convert between geographic coordinates and BCGS. Identifiers are written with the following convention : _B-001-L/093-F-10_
+Where 'B' is the quarter unit, '001' is the unit, 'L' is the block, 093 is the series, F is the map area, and 10 is the sheet. Note that the string after the '/' character is the same code that would be used in an NTS survey identifier to represent a map at 1:20,000 scale.
 
 ### Based on National Topographic System
 

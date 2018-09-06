@@ -11,7 +11,7 @@ To configure an angular client to receive environment variables as set on the ho
 
 ## Application Settings setup
 
-In the application settings page in the Azure portal we first define the settings that we want to provide to the end client application. In this example we create an application environment setting named rest_url and give it a specific value.
+In the application settings page in the Azure portal we first define the settings that we want to provide to the end client application. In this example we create an application environment setting named ```rest_url``` and give it a specific value.
 
 ## Angular client setup
 
@@ -28,7 +28,7 @@ export class AppSettings {
 
 Now, when we start the client code in the browser the first thing that needs to happen is a blocking call must be made to the configuration endpoint. This is necessary to ensure that all subsequent code can receive the values of the application settings.
 
-The app config service is used to retrieve the json object from the host server. Values received from the service are copied to the instance of the appSettings object that will be injected into our dependencies. The httpClient call uses a promise rather than an observable in order to block until the method has completed.
+The app config service is used to retrieve the JSON object from the host server. Values received from the service are copied to the instance of the appSettings object that will be injected into our dependencies. The httpClient call uses a promise rather than an observable in order to block until the method has completed.
 
 ```js
 import {Injectable, isDevMode} from '@angular/core';
@@ -100,7 +100,7 @@ export class AppModule { }
 
 ## Server.js /config endpoint
 
-Add the following method to server.js, This provides a server side endpoint that we can call from our client code to gather the server environment settings. We are surfacing specific application settings from the process Environment object and encoding these as json for our client to consume. There is an implicit convention that our client application will make a call to <https://[host]/config> on the server that hosts the application files.
+Add the following method to server.js, This provides a server side endpoint that we can call from our client code to gather the server environment settings. We are surfacing specific application settings from the process Environment object and encoding these as JSON for our client to consume. There is an implicit convention that our client application will make a call to <https://[host]/config> on the server that hosts the application files.
 
 ```js
   app.get('/config', function (req, res, next) {

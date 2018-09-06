@@ -31,7 +31,7 @@ Let's convert this method to a form that we can use to await a Task. The first s
 
 1. Check for the state of the cancelled bit on the event handler, If set then the result of the call is a cancellation and we must inform the caller by setting tcs.TrySetCanceled();
 1. Check for the presence of any exceptions passed to us in the Error property, if an exception is present then inform the caller by setting tcs.TrySetException(e.Error);
-1. Check for the presence of any result methods to pass in the Task by calling the Func getResult(), this is the function passed to the TransferCompletion method from our caller and this will typically be () => e.Result in the case that we want to pass the result of the source event back.
+1. Check for the presence of any result methods to pass in the Task by calling the Function getResult(), this is the function passed to the TransferCompletion method from our caller and this will typically be () => e.Result in the case that we want to pass the result of the source event back.
 1. Call the optional unregisterHandler to remove the event registration.
 
 ```c#

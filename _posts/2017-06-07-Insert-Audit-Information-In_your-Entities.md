@@ -7,14 +7,13 @@ tags: [Entity Framework]
 
 # Implement IAuditEntity to automatically audit your entities
 
-Sometimes its the little things that make big differences to the quality of a design. Needing to remember to set audit information into your entities when working with an ORM like Entity Framework will lead to inconsistent auditing of fields. However if we design a solution that can perform this task automatically as we use the entity then 
-we will have removed a potential source of problems.
+Sometimes its the little things that make big differences to the quality of a design. Needing to remember to set audit information into your entities when working with an ORM like Entity Framework will lead to inconsistent auditing of fields. However if we design a solution that can perform this task automatically as we use the entity then we will have removed a potential source of bugs.
 
 This interface defines the data fields that store the audit information.
 
 ```c#
 /// <summary>
-/// Implement this interface to denote that your entity model should automatically set the created and modified audit fields 
+/// Implement this interface to denote that your entity model should automatically set the created and modified audit fields
 /// </summary>
 public interface IAuditEntity
 {

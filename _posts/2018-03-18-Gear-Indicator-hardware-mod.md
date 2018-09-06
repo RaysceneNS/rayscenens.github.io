@@ -13,7 +13,7 @@ I have a second generation Suzuki SV650, this is a bike that was built to a budg
 
 ## Attempt to throw money at the problem
 
-Now there are commercial products out there that can be bought and clipped in place, but I wa never keen on the look. See for yourself, the commercial options use a bright (read distracting at night) LED digit. And the display colors don't mesh with the factory gauges.
+Now there are commercial products out there that can be bought and clipped in place, but I was never keen on the look. See for yourself, the commercial options use a bright (read distracting at night) LED digit. And the display colors don't mesh with the factory gauges.
 ![Alternate Product](/assets/images/2018/03/18/gipro%20sv.jpg)
 
 ## The Project Goals
@@ -34,7 +34,7 @@ I chose to implement my solution with an ATTiny44 micro controller. This particu
 - Small foot print, in SOIC14 packaging it is less than 9mm long while retaining pads large enough to solder by hand
 - Low cost, only a few dollars depending on quantity price breaks.
 - *Amazing tooling* Atmel Studio (based on Visual Studio) makes the software writing experience painless
-- Samples galore, many of the code samples and libraries used for arduino development can be modified or at least read for content
+- Samples galore, many of the code samples and libraries used for Arduino development can be modified or at least read for content
 - Enough memory for future expansion, an enormous 4K of flash memory combined with 256 bytes of ram ensure we have room to add new features.
 - Small power budget @ 3.3volts with a 1Mhz clock our power draw is a fraction of the energy required to power the back light.
 
@@ -48,7 +48,7 @@ The display needed to be easily read in direct sunlight, (motorcycles don't have
 
 ### Temperature Sensing
 
-The temperature sensor did not need to be super accurate as we would be rounding off the precision to the nearest degree celsius. A MCP9700A was selected for the its reported accuracy of 2 degrees celsius across a range of 0-70 degrees. Combined with an output that returns 10mv/degree would make the software easier to implement.
+The temperature sensor did not need to be super accurate as we would be rounding off the precision to the nearest degree Celsius. A MCP9700A was selected for the its reported accuracy of 2 degrees Celsius across a range of 0-70 degrees. Combined with an output that returns 10mv/degree would make the software easier to implement.
 
 ### The schematic
 

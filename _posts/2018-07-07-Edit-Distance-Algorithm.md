@@ -5,9 +5,13 @@ excerpt: "There are many algorithms in Computer Science that help us to understa
 tags: [Algorithms]
 ---
 
-# Edit Distance Algorithms
+# Levenshtein Edit Distance Algorithm
 
-Edit distance algorithms are a mechanism that quantify how different two strings are.
+There are many algorithms in Computer Science that help us to understand our data in meaningful ways. Edit distance algorithms are one such set of tools.
+
+## What is it
+
+Edit distance algorithms are a mechanism that score how similar two strings are to each other. Given a source string (s) and target string (t), edit distance is computed as the minimum number of characters that must be inserted, deleted or substituted on the source string to morph it as the target string. An edit distance of zero indicates that the source and target strings are identical. An edit distance equal to the length of the longest string, would indicate that the strings are entirely dissimilar. For more information see this [Wikipedia Entry](https://en.wikipedia.org/wiki/Levenshtein_distance)
 
 ## The Scenario
 
@@ -26,7 +30,7 @@ Using the Levenshtein  Edit Distance algorithm tells us the minimum number of ke
 
 So to edit the string 'Vancouve' -> 'Vancouver' requires us to insert 1 character.
 
-Here is the method in c#
+This is an implementation of the edit distance algorithm written in c#.
 
 ```c#
 using Microsoft.VisualStudio.TestTools.UnitTesting;

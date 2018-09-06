@@ -9,7 +9,7 @@ tags: [Entity Framework]
 
 ## Mark Entities for Removal without Prior Retrieval
 
-Usually in order to remove an item from a DBSet in entity framework you need to first query for the entity and then subsequently call delete on the entity. Sometimes all you really want to do is delete the item without incurring the overhead of a query. In this case you can ues the .Attach() method to bypass the entity retrieval.
+Usually in order to remove an item from a DBSet in entity framework you need to first query for the entity and then subsequently call delete on the entity. Sometimes all you really want to do is delete the item without incurring the overhead of a query. In this case you can use the .Attach() method to bypass the entity retrieval.
 
 ```c#
 Customer cust = new Customer();

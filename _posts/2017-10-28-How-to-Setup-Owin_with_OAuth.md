@@ -17,10 +17,10 @@ Using Azure Active Directory is a great way to offload the task of validating us
 
 ## Register your application with Azure AD
 
- In order to setup your Owin Mvc applications to use the authorization services in AAD. You will first need to register the application in the Azure Active Directory. Here we will
+ In order to setup your Owin MVC applications to use the authorization services in AAD. You will first need to register the application in the Azure Active Directory. Here we will
  1. Login to the azure portal
  2. Select Azure Active Directory from the navigation, and click create 'App registration'
- 3. Enter the name of our application, select Web app/api for the application type and most importantly enter the sign-on url. This is the base url of your web application e.g. ```https://my.net```
+ 3. Enter the name of our application, select Web app/api for the application type and most importantly enter the sign-on URL. This is the base URL of your web application e.g. ```https://my.net```
  4. Make note of the Application ID assigned from the wizard, we'll need this later on.
 
 ## Install the authorization handler
@@ -29,7 +29,7 @@ Next we will install the OpenIdConnect middleware in our Owin pipeline. This pac
 
 ![Authentication Flow](/assets/images/2017/10/28/Diagram1.png)
 
-Install the following nuget packages into the project
+Install the following NuGet packages into the project
 
 ```PowerShell
 Microsoft.Owin.Security.OpenIdConnect

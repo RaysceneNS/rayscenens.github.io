@@ -11,7 +11,7 @@ There is no built in support for Basic Authentication when creating a Web.Api co
 
 The first thing we need to do is create a class that implements the IAuthenticationFilter interface and add it to our project. This class will provide implementations of Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken); and Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken);
 
-The AuthenticateAsync method is invoked on every call to the web api controller that is associated to the filter. Within this call we will determine if the proper authentication header is supplied from the client and passed to us. If the auth header is valid then a generic principal is set on the HttpContext _this could be any type of principal required for your security setup_.
+The AuthenticateAsync method is invoked on every call to the web api controller that is associated to the filter. Within this call we will determine if the proper authentication header is supplied from the client and passed to us. If the authentivation header is valid then a generic principal is set on the HttpContext _this could be any type of principal required for your security setup_.
 
 ```c#
 public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
@@ -47,7 +47,7 @@ POST /api/controller HTTP/1.1
 Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
 ```
 
-The rfc specification says that the supplied format must be encoded in ISO-8859-1 format. To decode this parameter the header is sent through the following function.
+The RFC specification says that the supplied format must be encoded in ISO-8859-1 format. To decode this parameter the header is sent through the following function.
 
 ```c#
 private static bool ExtractUserNameAndPassword(string authorizationParameter, out string userName, out string password)
