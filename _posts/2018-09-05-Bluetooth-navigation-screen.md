@@ -101,9 +101,18 @@ void LcdBitmap(const uint8_t *BMP)
 }
 ```
 
+I used a ready made bitmap converter from [gabotronics.com](http://www.gabotronics.com/tutorials/run-length-encoding-for-lcd.htm) to compress the 1 bit bitmaps as RLE encoded arrays that I could then input as resources within the firmware source code. The arrays were stored in program memory directly by decorating them with the PROGMEM macro found in <avr/pgmspace.h>, this also requires that any calls to read the data array are made using the appropriate pgm_read macro i.e. ```pgm_read_byt(&(mydata[i]))```. The point to using PROGMEM is that we conserve free ram by loading the data resources from the program space rather than loading these variables into memory.
+
 ### State machine to decode packets
 
-The serial data that is sent from the cell phone to our micro controller comes with no regard to our ability to parse the information or acknowledge its receipt. We may become disconnected from the data stream due to Bluetooth radio interference or simply by re-establishing a communication channel with the sender after an out of range condition. This presents a problem in that we may receive packets that are malformed or may simply pick up a packet half way through its transmission. To solve this I implemented the decoder as a state machine that is triggered upon receipt of the packet preamble byte sequence ```[0x10, 0x7b]```
+The serial data that is sent from the cell phone to our micro controller comes with no regard to our ability to parse the information or acknowledge its receipt. We may become disconnected from the data stream due to Bluetooth radio interference or simply by re-establishing a communication channel with the sender after an out of range condition. This presents a problem in that we may receive packets that are malformed or may simply pick up a packet half way through its transmission. To solve this I implemented the decoder as a state machine. ![State Machine](/assets/images/2018/09/05/BasicStateDiagram.svg)
+
+1. Receipt of the packet preamble byte sequence ```[0x10, 0x7b]``` transitions to the start packet state.
+1. The packet is buffered in memory until a terminiating sequence or pre-amble is encountered.
+1. The terminating packet sequence will transition the state to End Packet.
+1. The crc checksum is calculated and compared to the crc sent.
+1. Packet has passed validation and is now acted upon.
+1. State transitions back to Pre-Amble search.
 
 ### Hardware Serial Interrupt Routine
 

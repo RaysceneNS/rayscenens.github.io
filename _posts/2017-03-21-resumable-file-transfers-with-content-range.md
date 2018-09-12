@@ -38,4 +38,4 @@ Content-Range: bytes */2000000
 ```
 
 The expected response back from the inquiry message is a 308 Resume that denotes the size of the message thus far received by the server.
-![Http Resumable Sequence Diagram](/assets/images/2017/03/21/System%20Sequence%20Diagram.png)
+![Http Resumable Sequence Diagram](/assets/images/2017/03/21/System%20Sequence%20Diagram.svg)
