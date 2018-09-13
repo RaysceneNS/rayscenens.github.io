@@ -3,11 +3,11 @@ title: "About Me"
 layout: about
 ---
 
-I'm Racine Ennis a software developer from Calgary. Sometimes I make things and then write about them here.
+I'm Racine Ennis a software developer currently living in Calgary. Sometimes I make things and then write about them here.
 
 I am a problem solver. I want to find out why things are the way they are. I want to understand how the world works, searching, asking questions, and delving into things in depth.
 
-After more than 20 years working on web related projects, I have an excellent knowledge of technologies, especially c#, javascript, html5. I know how to manage and participate in the software development life cycle.
+After more than 20 years working on web related projects, I have an excellent knowledge of technologies, especially c#, JavaScript, html5. I know how to manage and participate in the software development life cycle.
 
 I am communicative. I believe it is important to understand where a change request or idea is coming from as this can help to unearth the underlying business or technology driver. Often with this understanding I can work with the client to fine tune a requirement early on so that the business goal is achieved with less time or effort.
 

@@ -1,19 +1,25 @@
+---
+layout: post
+title: NTS Grid Coordinate System
+excerpt: "Working with Oil and Gas well location data in Western Canada is challenging due to the prevalence of many different identifier types that are used to represent the location of a given well, we have DLS, NTS & UWI. I developed a library that contains types that represent the various grid systems. These types perform validation of input values to ensure that the values are valid. The types can also perform conversion between geographic locations and the survey system locations."
+---
+
 # Working on library to handle survey systems of Western Canada
 
-Working with Oil and Gas well location data in Western Canada is challenging due to the prevelance of many different identifier types that are used to represent the location of a given well, we have Dls, Nts & Uwi. I developed a library that contains types that represent the various grid systems. These types perform validation of input values to ensure that the values are valid. The types can also perform conversion between geographic locations and the survey system locations.
+Working with Oil and Gas well location data in Western Canada is challenging due to the prevalence of many different identifier types that are used to represent the location of a given well, we have DLS, NTS & UWI. I developed a library that contains types that represent the various grid systems. These types perform validation of input values to ensure that the values are valid. The types can also perform conversion between geographic locations and the survey system locations.
 
 ## Dominion Land Survey (DLS)
 
-The dominion land survey (DLS) is a survey system that was developed before GPS coordinates. It is comprised by repeatedly surveying 1x1 square mile plots of land called sections.
+The dominion land survey (DLS) is a survey system that was developed before GPS coordinates. It is composed of numerous (1 mi. x 1 mi.) square plots of land called sections.
 
-Alberta, Saskatchewan, and parts of Manitoba and parts of British Columbia are mapped on a grid system into townships of approximately 36 square miles (6 mi. x 6mi.).  Each township consists of 36 sections (1 mi. x 1 mi). Each section is further divided into 16 legal subdivisions (LSDs). The numbering system for sections and LSDs uses a back-and-forth system where the numbers may be increasing either to the right or the left in the grid. Since the DLS system is based on actual survey data, there can be gaps in the coverage.
+Alberta, Saskatchewan, parts of Manitoba and parts of British Columbia are mapped on a grid system into townships of approximately 36 square miles (6 mi. x 6 mi.).  Each township consists of 36 sections (1 mi. x 1 mi). Each section is further divided into 16 legal subdivisions (LSDs). The numbering system for sections and LSDs uses a back-and-forth system where the numbers may be increasing either to the right or the left in the grid. Since the DLS system is based on actual survey data, there can be gaps in the coverage.
 
 ### Breakdown of DLS Identifier
 
  Given the location: _04-11-082-04W6_
 
 | Part | Value |
-|---|---|
+|------|-------|
 | Legal Sub division | 04|
 | Section | 11|
 | Township | 082|
@@ -24,25 +30,25 @@ Alberta, Saskatchewan, and parts of Manitoba and parts of British Columbia are m
 
 A legal subdivision is the smallest unit in the DLS identifier, It is used to divide the Section into 16 pieces of ~1/4 mi x 1/4 mi or ~40 acres. These are numbered from 1-16 in a zig zag pattern.
 
-|1 |2 |3 |4 |
+| 1 | 2 | 3 | 4 |
 |---|---|---|---|
-13|14|15|16
-12|11|10|09
-05|06|07|08
-04|03|02|01
+|13 |14 |15 |16 |
+|12 |11 |10 |09 |
+|05 |06 |07 |08 |
+|04 |03 |02 |01 |
 
 #### Section
 
 A section is a 1x1 mile parcel, it divides the township into 36 pieces. Sections are labelled from 1-36 with a zig zag pattern.
 
-|1 |2 |3 |4 |5 |6 |
+| 1 | 2 | 3 | 4 | 5 | 6 |
 |---|---|---|---|---|---|
-31|32|33|34|35|36
-30|29|28|27|26|25
-19|20|21|22|23|24
-18|17|16|15|14|13
-07|08|09|10|11|12
-06|05|04|03|02|01
+|31 |32 |33 |34 |35 |36 |
+|30 |29 |28 |27 |26 |25 |
+|19 |20 |21 |22 |23 |24 |
+|18 |17 |16 |15 |14 |13 |
+|07 |08 |09 |10 |11 |12 |
+|06 |05 |04 |03 |02 |01 |
 
 #### Township
 
@@ -58,22 +64,22 @@ Ranges are numbered from each meridian and increase as you move west. For locati
 
 #### Township Lines
 
-Township lines are numbered from the base meridian @ 49 degrees (Majority of Canada-US border). Township liness run east-west and are spaced at 6.0375 miles to allow for the 6 miles of a township and the 3 road allowances of one chain each (~20 meters). In addition, there are baselines that repeat every 24.15 miles or 4 township lines.
+Township lines are numbered from the base meridian @ 49 degrees (Majority of Canada-US border). Township lines run east-west and are spaced at 6.0375 miles to allow for the 6 miles of a township and the 3 road allowances of one chain each (~20 meters). In addition, there are baselines that repeat every 24.15 miles or 4 township lines.
 
 #### Meridians
 
 Meridians, the first or prime meridian was established just west of Winnipeg. There are a total of 8 western meridians as shown below. However the library only maps sections in meridians 1-6.
 
-| Longitude | Name |
-|---|---|
-| 97° 27' 28.4" | W1M (a.k.a Prime Meridian) |
-| 102° | W2M |
-| 106° | W3M |
-| 110° | W4M (Saskatchewan-Alberta Border) |
-| 114° | W5M |
-| 118° | W6M |
-| 122° | W7M |
-| 122° 45' 39.6" | W8M (Coast Meridian) |
+| Longitude      | Name                       |
+|----------------|----------------------------|
+| 97° 27' 28.4"  | W1M (a.k.a Prime Meridian) |
+| 102°           | W2M                        |
+| 106°           | W3M                        |
+| 110°           | W4M (Saskatchewan-Alberta Border) |
+| 114°           | W5M                        |
+| 118°           | W6M                        |
+| 122°           | W7M                        |
+| 122° 45' 39.6" | W8M (Coast Meridian)       |
 
 ### Compression of DLS Section Markers
 
@@ -116,60 +122,60 @@ Locations throughout all of Canada can be specified using the National Topograph
 The NTS system consists of many series (sometimes called maps), identified by series numbers that increase by 1 for the next series to the north, and increase by 10 for the next series to the west. Most series are 8 degrees across and 4 degrees high.
 The province of British Colombia is mapped within the following series
 
-|1 |2 |3 |4 |
+| 1 | 2 | 3 | 4 |
 |---|---|---|---|
-|114|104|94|
-|   |103|93|83
-|   |102|92|82
+|114|104|94 |   |
+|   |103|93 |83 |
+|   |102|92 |82 |
 
 #### Map Areas
 
 Each series is subdivided into 16 areas, which are given letters from A to P, starting at the southeast corner and then labelled with a back and forth lettering with A starting at the South East Corner. Each map area is 2 degrees of longitude (width) and 1 degrees of latitude (north south).
 
-|1 |2 |3 |4 |
+| 1 | 2 | 3 | 4 |
 |---|---|---|---|
-| M|N|O|P |
-| L|K|J|I |
-| E|F|G|H |
-| D|C|B|A |
+| M | N | O | P |
+| L | K | J | I |
+| E | F | G | H |
+| D | C | B | A |
 
 #### Sheets
 
 Each area is then subdivided into 16 sheets (sometimes called a "map sheet") which are given numbers from 1 to 16. The back-and-forth method is used for numbering, starting in the southeast corner.Each sheet is 0.5 degrees of longitude (width) and 0.25 degrees of latitude (north south)
 
-|1 |2 |3 |4 |
+| 1 | 2 | 3 | 4 |
 |---|---|---|---|
-|13|14|15|16|
-|12|11|10|09|
-|05|06|07|08|
-|04|03|02|01|
+| 13| 14| 15| 16|
+| 12| 11| 10| 09|
+| 05| 06| 07| 08|
+| 04| 03| 02| 01|
 
 #### Blocks
 
 A sheet is subdivided into 12 blocks, 4 across and 3 high. These are given letters to identify them, from A to L, using the back-and-forth method starting in the southeast corner. Each block is 0.125 degrees of longitude (width) and (0.25/3) degrees of latitude (north south)
 
-|1 |2 |3 |4 |
+| 1 | 2 | 3 | 4 |
 |---|---|---|---|
-|L|K|J|I|
-|E|F|G|H|
-|D|C|B|A|
+| L | K | J | I |
+| E | F | G | H |
+| D | C | B | A |
 
 #### Units
 
 Each block is subdivided into 100 "units" numbered as 1 to 10, from east to west in the southernmost row, and 11 to 20 from east to west in the next row up, and so on.Note the direction of the numbers is always towards the left.
 
-|1 |2 |3 |4 |5 |6 |7 |8 |9 |10 |
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |10 |
 |---|---|---|---|---|---|---|---|---|---|
-|20|19|18|17|16|15|14|13|12|11|
-|10|09|08|07|06|05|04|03|02|01|
+|20 |19 |18 |17 |16 |15 |14 |13 |12 |11 |
+|10 |09 |08 |07 |06 |05 |04 |03 |02 |01 |
 
 #### Quarters
 
 Finally, each unit is subdivided into 4 quarter units labeled A, B, C, and D, starting in the southeast and moving clockwise.
 
-|1 |2 |
+| 1 | 2 |
 |---|---|
-| C|D |
-| B|A |
+| C | D |
+| B | A |
 
-Anyhow, the project files can be downloaded from [GitHub](https://github.com/RaysceneNS/GisLibrary)
+Anyhow, the project files can be downloaded from [GitHub](https://github.com/RaysceneNS/SurveyGridLibrary)

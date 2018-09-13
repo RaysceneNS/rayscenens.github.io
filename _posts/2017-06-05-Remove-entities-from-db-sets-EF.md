@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Removing entities from DBSets.
-excerpt: "Removing entities from DB Sets in Entity Framework ."
+excerpt: "Removing entities from DB Sets in Entity Framework."
 tags: [Entity Framework]
 ---
 
