@@ -1,4 +1,5 @@
 #project
 _site/
 .vscode/
+.vs/
 Gemfile.lock
