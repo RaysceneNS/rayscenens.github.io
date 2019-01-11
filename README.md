@@ -2,6 +2,14 @@
 
 A website for racineennis.ca
 
+## Prerequisites
+
+Under ubuntu the following packages are required.
+make
+gcc
+g++
+zlib1g-dev
+
 ## Environment Setup
 
 This website is built using the Jekyll static site generator.
