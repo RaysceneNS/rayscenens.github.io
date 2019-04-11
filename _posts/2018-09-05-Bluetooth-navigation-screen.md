@@ -54,6 +54,41 @@ AT+UART?
 OK
 ```
 
+Using an Arduino sketch to connect to the Bluetooth module to enter the AT commands
+
+```C
+// If you haven't configured your device before use this
+#define BLUETOOTH_SPEED 38400 //This is the default baudrate that HC-05 uses
+// If you are modifying your existing configuration, use this:
+// #define BLUETOOTH_SPEED 57600
+
+#include <SoftwareSerial.h>
+
+// Swap RX/TX connections on bluetooth chip
+//   Pin 10 --> Bluetooth TX
+//   Pin 11 --> Bluetooth RX
+SoftwareSerial BTSerial(10, 11); // RX, TX
+void setup()
+{
+  pinMode(9, OUTPUT);  // this pin will pull the HC-05 pin 34 (key pin) HIGH to switch module to AT mode
+  digitalWrite(9, HIGH);
+  Serial.begin(9600);
+  Serial.println("Enter AT commands:");
+  BTSerial.begin(38400);  // HC-05 default speed in AT command more
+}
+
+void loop()
+{
+  // Keep reading from HC-05 and send to Arduino Serial Monitor
+  if (BTSerial.available())
+    Serial.write(BTSerial.read());
+
+  // Keep reading from Arduino Serial Monitor and send to HC-05
+  if (Serial.available())
+    BTSerial.write(Serial.read());
+}
+```
+
 ### Power Regulator
 
 The power requirements for this system are only 50mA, the highest current draw was observed from the HC-05 during pairing mode. Typical power draws for the major components breakdown as follows:
