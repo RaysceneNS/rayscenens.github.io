@@ -48,6 +48,7 @@ This method extracts the username and password from the authorization header sup
 by the RFC specification.
 
 An example of the raw header sent from the browser:
+
 ```HTTP
 POST /api/controller HTTP/1.1
 Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
