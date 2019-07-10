@@ -7,11 +7,15 @@ tags: [Web.Api, Security]
 
 # How-to setup Basic Authentication filter in an Asp.Net Web API
 
-There is no built in support for Basic Authentication when creating a Web.Api controller. However adding this support is fairly straight forward.
+There is no built-in support for Basic Authentication when creating a Web.Api controller using the .Net Framework. However adding this support is fairly straight forward.
 
-The first thing we need to do is create a class that implements the IAuthenticationFilter interface and add it to our project. This class will provide implementations of Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken); and Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken);
+The first thing we need to do is create a class that implements the IAuthenticationFilter interface and add it to our project. This class will provide implementations of the following methods:
+'Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken);'
+'Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken);'
 
-The AuthenticateAsync method is invoked on every call to the web api controller that is associated to the filter. Within this call we will determine if the proper authentication header is supplied from the client and passed to us. If the authentivation header is valid then a generic principal is set on the HttpContext _this could be any type of principal required for your security setup_.
+The AuthenticateAsync handler is invoked on every call to the web api controller that we associate with the filter. Within this call we determine if the proper Basic authentication header is passed from the client. If the authentication header is valid then a generic principal is set on the HttpContext _this could be any type of principal as required for your specific security solution_.
+
+A sample implementation of the handler is shown below.
 
 ```c#
 public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
@@ -40,14 +44,16 @@ public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationTok
 }
 ```
 
-This method extracts the user and password from the authorization header supplied by the client browser in the form
+This method extracts the username and password from the authorization header supplied by the client browser in the form specified
+by the RFC specification.
 
+An example of the raw header sent from the browser:
 ```HTTP
 POST /api/controller HTTP/1.1
 Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
 ```
 
-The RFC specification says that the supplied format must be encoded in ISO-8859-1 format. To decode this parameter the header is sent through the following function.
+The encoded value above is in ISO-8859-1 format, this is simply a base64 encoding of a username and password separated by the colon character ':'. To decode this value we can use the following function.
 
 ```c#
 private static bool ExtractUserNameAndPassword(string authorizationParameter, out string userName, out string password)
@@ -122,4 +128,14 @@ Finally to enable this filter for all web api requests we simply add the filter 
 
 ```c#
     config.Filters.Add(new BasicAuthenticationFilter());
+```
+
+Alternatively a filter can be applied to an individual controller as follows:
+
+```c#
+[BasicAuthenticationFilter]
+public class CustomizedApiControllerBase : ApiController
+{
+   ...
+}
 ```
