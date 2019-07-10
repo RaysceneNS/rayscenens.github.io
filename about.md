@@ -5,7 +5,7 @@ layout: about
 
 I'm Racine Ennis a software developer currently living in Calgary. Sometimes I make things and then write about them here.
 
-I am a problem solver. I want to find out why things are the way they are. I want to understand how the world works, searching, asking questions, and delving into things in depth.
+I am a problem solver. I want to find out why things are the way they are. I want to understand how the world works, searching, asking questions, and delving into things.
 
 After more than 20 years working on web related projects, I have an excellent knowledge of technologies, especially c#, JavaScript, html5. I know how to manage and participate in the software development life cycle.
 
