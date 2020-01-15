@@ -194,3 +194,5 @@ A few more screenshots that demonstrate the final product.
 ![screen shot 2](/assets/images/2018/09/05/screen%20cap%202.jpg)
 
 ![screen shot 3](/assets/images/2018/09/05/screen%20cap%203.jpg)
+
+![installed](/assets/images/2018/09/05/installed.jpg)
