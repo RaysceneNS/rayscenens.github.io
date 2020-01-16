@@ -1,7 +1,6 @@
 ---
-layout: post
 title: Create Task Asynchronous style calls from Event Handlers
-tags: [Task]
+tags: [.Net]
 ---
 
 # Create Task Asynchronous style calls from Event Handlers

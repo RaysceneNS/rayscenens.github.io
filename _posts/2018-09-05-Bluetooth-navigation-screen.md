@@ -1,8 +1,7 @@
 ---
-layout: post
 title: Bluetooth connected Navigation display
 excerpt: "The goal of this project is to create a low cost display that can be mounted to the handlebars or fairing of any motorcycle to provide a display of the riders route navigation. GPS navigation is performed via an app running on the users smart phone. Directions are communicated over Bluetooth from the the phone to the display module discussed below.."
-tags: [MicroController]
+tags: [Microcontroller]
 ---
 
 # Bluetooth connected Navigation display

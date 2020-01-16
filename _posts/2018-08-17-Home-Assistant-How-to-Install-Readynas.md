@@ -1,5 +1,4 @@
 ---
-layout: post
 title: How To Install Home Assistant on a Netgear ReadyNas
 excerpt: "A quick reference guide for how to perform the necessary steps to install homeassistant on a NetGear ReadyNas."
 tags: [ReadyNas]

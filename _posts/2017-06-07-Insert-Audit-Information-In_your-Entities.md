@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Automatically Insert Audit information in your Entities.
 excerpt: "By updating the audit information for your entities automatically as part of your SaveChanges() method, you eliminate the possibility that this crucial information is not managed correctly."
 tags: [Entity Framework]

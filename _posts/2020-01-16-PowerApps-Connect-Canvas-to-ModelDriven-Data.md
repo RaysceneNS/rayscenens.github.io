@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Canvas App can't see ModelDrivenFormIntegration.Item
 tags: [Power Apps]
 ---

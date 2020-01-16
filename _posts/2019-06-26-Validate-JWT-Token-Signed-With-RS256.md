@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Validate JWT Token signed with RS256
 excerpt: "How to secure an external web API call for use within Microsoft Dynamics 365 CRM Portals."
 tags: [Crypto,Dynamics]
@@ -107,11 +106,11 @@ var callApi = function() {
 
 ## Web Api Token Validation
 
-The following snippet demonstrates how a .Net web api may be setup to perform validation of the jwt token as sent by the client browser. Validation is necessary to ensure that the information contained within the token comes from a legitimate server and thus we can trust the claims contained within the token as authentic.
+The following snippet demonstrates how a .Net web api may be setup to perform validation of the JWT token as sent by the client browser. Validation is necessary to ensure that the information contained within the token comes from a legitimate server and thus we can trust the claims contained within the token as authentic.
 
-The crm portal provides an endpoint at <https://{PORTAL_SERVER}/_services/auth/publickey>
+The CRM portal provides an endpoint at <https://{PORTAL_SERVER}/_services/auth/publickey>
 
-The response from this endpoint is the public key that can be used to verify the token. The public key endpoint returns an RSA public key in pem format
+The response from this endpoint is the public key that can be used to verify the token. The public key endpoint returns an RSA public key in PEM (Privacy Enhanced Mail) format
 
 for example:
 
@@ -206,7 +205,7 @@ internal class TokenValidationHandler : DelegatingHandler
     }
 ```
 
-note: This relies on a signing key parameter, which is the RSA public key as loaded from the public key endpoint.We rely on an external library [BouncyCastle.Crypto] to read the pem string, hopefully in the future the .Net framework will provide built in support for parsing pem formatted signing keys natively.
+note: This relies on a signing key parameter, which is the RSA public key as loaded from the public key endpoint.We rely on an external library [BouncyCastle.Crypto] to read the PEM string, hopefully in the future the .Net framework will provide built in support for parsing PEM formatted signing keys natively.
 
 Register the token validation handler within the web api like so
 

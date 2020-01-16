@@ -1,8 +1,7 @@
 ---
-layout: post
 title: Make. Homebrew Gear Position Indicator
 excerpt: "Sometimes you can't buy the exact thing you want from a store, those are great situations. Let me show you a hardware project where I designed the circuit and coded the firmware."
-tags: [Micro controller]
+tags: [Microcontroller]
 ---
 
 # Gear Position Indicator

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Passing parameters to Power Automate from CanvasApp
 tags: [Power Apps,Power Automate]
 ---

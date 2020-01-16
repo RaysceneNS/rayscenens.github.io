@@ -1,5 +1,4 @@
 ---
-layout: post
 title: How-to setup Basic Authentication filter in an Asp.Net Web API project
 excerpt: "When combined with TLS security Basic Authentication can be useful in situations where interfacing with another party may dictate this choice for you."
 tags: [Web.Api, Security]

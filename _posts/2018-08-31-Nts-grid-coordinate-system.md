@@ -1,5 +1,4 @@
 ---
-layout: post
 title: NTS Grid Coordinate System
 excerpt: "Working with Oil and Gas well location data in Western Canada is challenging due to the prevalence of many different identifier types that are used to represent the location of a given well, we have DLS, NTS & UWI. I developed a library that contains types that represent the various grid systems. These types perform validation of input values to ensure that the values are valid. The types can also perform conversion between geographic locations and the survey system locations."
 ---
