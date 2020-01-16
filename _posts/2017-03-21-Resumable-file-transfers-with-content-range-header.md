@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Resumable file transfers.
 excerpt: "Resumable file transfers are sometimes necessary in situations where a large amount of data must be sent over a network that experiences intermittent outages."
 tags: [Http]
