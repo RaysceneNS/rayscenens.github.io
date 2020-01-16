@@ -1,10 +1,12 @@
 ---
-title: Automatically Insert Audit information in your Entities.
-excerpt: "By updating the audit information for your entities automatically as part of your SaveChanges() method, you eliminate the possibility that this crucial information is not managed correctly."
 tags: [Entity Framework]
 ---
 
 # Implement IAuditEntity to automatically audit your entities
+
+By updating the audit information for your entities automatically as part of your SaveChanges() method, you eliminate the possibility that this crucial information is not managed correctly.
+
+## Overview
 
 Sometimes its the little things that make big differences to the quality of a design. Needing to remember to set audit information into your entities when working with an ORM like Entity Framework will lead to inconsistent auditing of fields. However if we design a solution that can perform this task automatically as we use the entity then we will have removed a potential source of bugs.
 

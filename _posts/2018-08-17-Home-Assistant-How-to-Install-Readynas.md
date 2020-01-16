@@ -1,16 +1,15 @@
 ---
-title: How To Install Home Assistant on a Netgear ReadyNas
-excerpt: "A quick reference guide for how to perform the necessary steps to install homeassistant on a NetGear ReadyNas."
-tags: [ReadyNas]
+tags: [ReadyNAS]
 ---
 
-# How To Install Home Assistant on a ReadyNas
+# How To Install Home Assistant on a Netgear ReadyNAS
 
-The purpose of this guide is to record the steps required to install Home Assistant on a NetGear ReadyNas running OS 6.9.3.
+A quick reference guide for how to perform the necessary steps to install homeassistant on a NetGear ReadyNAS.
+The purpose of this guide is to record the steps required to install Home Assistant on a NetGear ReadyNAS running OS 6.9.3.
 
 ## Install Python 3.5.6
 
-Open an SSH terminal and login to your ReadyNas, you will first need to enable the SSH feature within the System - Services area of the ReadyNas admin panel.
+Open an SSH terminal and login to your ReadyNAS, you will first need to enable the SSH feature within the System - Services area of the ReadyNAS admin panel.
 
 Home assistant requires a minimum python version of 3.5.6, as of this writing apt-get only makes 3.4.2 available on this system. To get around this issue we need to roll our own python build.
 

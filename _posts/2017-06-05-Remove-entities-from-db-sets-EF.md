@@ -1,10 +1,10 @@
 ---
-title: Removing entities from DBSets.
-excerpt: "Removing entities from DB Sets in Entity Framework."
 tags: [Entity Framework]
 ---
 
-# Removing entities from Sets in Entity Framework
+# Removing entities from DB Sets in Entity Framework
+
+In this post I will show you a simple extension method that can be used to make your Entity Framework code more readable.
 
 ## Mark Entities for Removal without Prior Retrieval
 

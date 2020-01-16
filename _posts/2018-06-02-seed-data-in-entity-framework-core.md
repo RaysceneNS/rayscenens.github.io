@@ -1,11 +1,12 @@
 ---
-title: How-to seed data in an Entity Framework Core 2.0 project
-excerpt: "The data seeding mechanism in Entity Framework Core has changed from the implementation in EF6. This is a quick-start method to implement data seeding in your projects."
 tags: [.Net]
-
 ---
 
-# Seeding data in Entity Framework Core
+# How-to seed data in an Entity Framework Core 2.0 project
+
+The data seeding mechanism in Entity Framework Core has changed from the implementation in EF6. This is a quick-start method to implement data seeding in your projects.
+
+## Background
 
 Recently I was playing around with Entity Framework Core. And needed to seed some data, but found that the seeding support has changed quite a bit from how it was setup in Entity Framework 6.
 

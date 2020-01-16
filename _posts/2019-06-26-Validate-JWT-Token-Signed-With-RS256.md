@@ -1,10 +1,10 @@
 ---
-title: Validate JWT Token signed with RS256
-excerpt: "How to secure an external web API call for use within Microsoft Dynamics 365 CRM Portals."
 tags: [Crypto,Dynamics]
 ---
 
 # Validate JWT Token signed with RS256 for use within Microsoft Dynamics 365 CRM
+
+How to secure an external web API call for use within Microsoft Dynamics 365 CRM Portals.
 
 ## Overview
 
@@ -23,7 +23,7 @@ The JWT consists of three parts separated by periods ( . )
 
 ### Header
 
-The header is a base64 encoded json string. It typically encodes the signing algorithm used and the type of token.
+The header is a base64 encoded JSON string. It typically encodes the signing algorithm used and the type of token.
 
 example of the header:
 
@@ -36,14 +36,14 @@ example of the header:
 
 ### Payload
 
-The payload is another base64 encoded json value. It contains the claims, which are statements about the current user. There are three types of claims: registered, public and private.
+The payload is another base64 encoded JSON value. It contains the claims, which are statements about the current user. There are three types of claims: registered, public and private.
 
 - Registered Claims: These are a set of predefined claims which are not mandatory but recommended, to provide a set of useful, interoperable claims. Some examples of these are:
   - iss (issuer)
   - exp (expiration time)
   - sub (subject)
   - aud (audience)
-- Public Claims: These can be defined at will by those using JWTs. But to avoid collisions they should be defined in the IANA Json web token registry.
+- Public Claims: These can be defined at will by those using JWTs. But to avoid collisions they should be defined in the IANA JSON web token registry.
 - Private Claims: These are any claims that are agreed upon between parties and are neither registered or public.
 
 An example payload:
@@ -74,7 +74,7 @@ The signature is a byte array that represents the RSA signing data that must be 
 
 ## Web Client Code
 
-The following javascript demonstrates how a client can obtain a jwt token, and then pass this token to an external service via the http Authorization header.
+The following JavaScript demonstrates how a client can obtain a JWT token, and then pass this token to an external service via the http Authorization header.
 
 ``` javascript
 var _jwtToken;
@@ -114,7 +114,7 @@ The response from this endpoint is the public key that can be used to verify the
 
 for example:
 
-```
+```console
 -----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqFAmeuvnR6GM/B04NAFB
 658rVEmmOIFj2z41Z22kBz6dImkDx5rIzxcgmslxG/SlGUqW0oTji6B7RJIMdjhB

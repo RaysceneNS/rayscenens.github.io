@@ -1,10 +1,10 @@
 ---
-title: Make. Homebrew Gear Position Indicator
-excerpt: "Sometimes you can't buy the exact thing you want from a store, those are great situations. Let me show you a hardware project where I designed the circuit and coded the firmware."
 tags: [Microcontroller]
 ---
 
-# Gear Position Indicator
+# Make. Homebrew Gear Position Indicator
+
+Sometimes you can't buy the exact thing you want from a store, those are great situations. Let me show you a hardware project where I designed the circuit and coded the firmware.
 
 ## The problem
 
@@ -28,7 +28,7 @@ Armed with an idea of what I wanted I set out to achieve the following goals.
 ### Choose a uC
 
 I chose to implement my solution with an ATTiny44 micro controller. This particular micro was selected for these reasons.
-![Attiny](https://raw.githubusercontent.com/RaysceneNS/SV-650-GearPositionIndicator/master/img/ATtinyx4.png)
+![ATTINY44](https://raw.githubusercontent.com/RaysceneNS/SV-650-GearPositionIndicator/master/img/ATtinyx4.png)
 
 - Small foot print, in SOIC14 packaging it is less than 9mm long while retaining pads large enough to solder by hand
 - Low cost, only a few dollars depending on quantity price breaks.
@@ -69,4 +69,3 @@ A similar voltage divider scheme but at 5.7:1 is used to reduce the voltage valu
 ![installed](/assets/images/2018/03/18/installed.jpg)
 
 The source code for the firmware as well as the board schematic files can be found on my [GitHub Repository](https://github.com/RaysceneNS/SV-650-GearPositionIndicator)
-

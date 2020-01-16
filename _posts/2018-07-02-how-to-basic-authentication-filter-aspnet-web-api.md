@@ -1,12 +1,16 @@
 ---
-title: How-to setup Basic Authentication filter in an Asp.Net Web API project
-excerpt: "When combined with TLS security Basic Authentication can be useful in situations where interfacing with another party may dictate this choice for you."
 tags: [Web.Api, Security]
 ---
 
 # How-to setup Basic Authentication filter in an Asp.Net Web API
 
+When combined with TLS security Basic Authentication can be useful in situations where interfacing with another party may dictate this choice for you.
+
+## Problem
+
 There is no built-in support for Basic Authentication when creating a Web.Api controller using the .Net Framework. However adding this support is fairly straight forward.
+
+## Solution
 
 The first thing we need to do is create a class that implements the IAuthenticationFilter interface and add it to our project. This class will provide implementations of the following methods:
 'Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken);'

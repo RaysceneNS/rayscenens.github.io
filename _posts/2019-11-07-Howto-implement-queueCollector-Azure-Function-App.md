@@ -1,9 +1,8 @@
 ---
-title: How to implement the Queue Collector within an Azure function
 tags: [Azure]
 ---
 
-## How to implement the Queue Collector within an Azure function
+# How to implement the Queue Collector within an Azure function
 
 Here is a quick note to my future self.
 

@@ -1,5 +1,4 @@
 ---
-title: Create Task Asynchronous style calls from Event Handlers
 tags: [.Net]
 ---
 

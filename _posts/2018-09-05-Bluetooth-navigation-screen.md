@@ -1,6 +1,4 @@
 ---
-title: Bluetooth connected Navigation display
-excerpt: "The goal of this project is to create a low cost display that can be mounted to the handlebars or fairing of any motorcycle to provide a display of the riders route navigation. GPS navigation is performed via an app running on the users smart phone. Directions are communicated over Bluetooth from the the phone to the display module discussed below.."
 tags: [Microcontroller]
 ---
 
@@ -46,7 +44,7 @@ In order to Set/Check serial parameter of your HC-05 module:
 
 Example:
 
-```
+```console
 AT+UART=9600，1,2,\r\n
 OK
 
@@ -195,4 +193,3 @@ A few more screenshots that demonstrate the final product.
 ![screen shot 2](/assets/images/2018/09/05/screen%20cap%202.jpg)
 
 ![screen shot 3](/assets/images/2018/09/05/screen%20cap%203.jpg)
-

@@ -1,10 +1,10 @@
 ---
-title: How-to Setup OpenIDConnect with Owin MVC
-excerpt: "Open ID Connect, is a protocol that extends Open Auth with basic profile support. Implementing it in an Owin MVC project is straight forward."
 tags: [OAuth,.Net]
 ---
 
-# OpenIDConnect in Owin MVC project
+# How-to Setup OpenIDConnect in OWIN MVC project
+
+Open ID Connect, is a protocol that extends OpenAuth with basic profile support. Implementing it in an OWIN (Open Web Interface for .NET) MVC project comes down to a series of steps.
 
 ## Overview
 
@@ -16,7 +16,8 @@ Using Azure Active Directory is a great way to offload the task of validating us
 
 ## Register your application with Azure AD
 
- In order to setup your Owin MVC applications to use the authorization services in AAD. You will first need to register the application in the Azure Active Directory. Here we will
+ In order to setup your OWIN MVC applications to use the authorization services in AAD. You will first need to register the application in the Azure Active Directory. Here we will:
+
  1. Login to the azure portal
  2. Select Azure Active Directory from the navigation, and click create 'App registration'
  3. Enter the name of our application, select Web app/api for the application type and most importantly enter the sign-on URL. This is the base URL of your web application e.g. ```https://my.net```
@@ -24,7 +25,7 @@ Using Azure Active Directory is a great way to offload the task of validating us
 
 ## Install the authorization handler
 
-Next we will install the OpenIdConnect middleware in our Owin pipeline. This package will take care of requests that will be made to our app as a regular part of implementing the Auth flow.
+Next we will install the OpenIdConnect middleware in our OWIN pipeline. This package will take care of requests that will be made to our app as a regular part of implementing the Authentication flow.
 
 ![Authentication Flow](/assets/images/2017/10/28/Diagram1.png)
 

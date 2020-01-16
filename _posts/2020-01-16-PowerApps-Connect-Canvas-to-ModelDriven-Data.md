@@ -1,9 +1,8 @@
 ---
-title: Canvas App can't see ModelDrivenFormIntegration.Item
 tags: [Power Apps]
 ---
 
-# Canvas App can't see ModelDrivenFormIntegration.Item
+# Canvas App can't see ModelDrivenFormIntegration.Item at App Start
 
 ## Problem
 
@@ -15,14 +14,15 @@ What I had to do to make this work wasn’t pretty, but I'm finding a lot of thi
 
 I added a Global scoped Boolean variable named ModelDrivenFormIntegrationRefreshFired. I set this at the end of the ModelDrivenFormIntegration OnDataRefresh Action, like so.
 
-```
+```vb
 Set(ModelDrivenFormIntegrationRefreshFired, false);
 Refresh([@DataSourceItems]);
 Set(ModelDrivenFormIntegrationRefreshFired, true);
 ```
 
 I built a start screen that I set to show first when my App starts up by setting the OnStart Action to.
-```
+
+```vb
 Navigate('Start Screen')
 ```
 
@@ -33,7 +33,7 @@ Within the start screen I dropped on a timer control that is setup as:
 
 The OnTimerEnd event is where I place the code that makes the decision about which form to present to the user based on the value of my ModelDrivenFormIntegration Item.
 
-```
+```vb
 If(
     IsBlank(ModelDrivenFormIntegration.Item.'Primary Key'),
     Navigate('Create New Data Screen'),
