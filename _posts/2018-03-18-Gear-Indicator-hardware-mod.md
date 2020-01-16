@@ -67,4 +67,7 @@ A similar voltage divider scheme but at 5.7:1 is used to reduce the voltage valu
 
 ![Second Gear](/assets/images/2018/03/18/second.jpg)
 
+![installed](/assets/images/2018/03/18/installed.jpg)
+
 The source code for the firmware as well as the board schematic files can be found on my [GitHub Repository](https://github.com/RaysceneNS/SV-650-GearPositionIndicator)
+
