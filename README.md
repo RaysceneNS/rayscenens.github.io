@@ -14,7 +14,10 @@ zlib1g-dev
 
 This website is built using the Jekyll static site generator.
 
-You will need to install the Ruby devkit on windows. The easiest way is to use the [Ruby Installer](https://rubyinstaller.org).
+You will need to install the Ruby devkit,
+
+* on Windows: The easiest way is to use the [Ruby Installer](https://rubyinstaller.org).
+* on Linux: `sudo apt install ruby-dev`
 
 Validate that ruby is installed with the following command.
 
