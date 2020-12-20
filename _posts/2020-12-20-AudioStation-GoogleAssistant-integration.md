@@ -153,7 +153,7 @@ Use the following command to add a client to the OAuth list. Make note of the cl
 ```
 
 Now you should see something like the following in your OAuth service blade.
-![Alternate Product](/assets/images/2020/12/20/oauth_setup.jpg)
+![Alternate Product](/assets/images/2020/12/20/oauth_setup.png)
 
 ### Linking the google action:
 
