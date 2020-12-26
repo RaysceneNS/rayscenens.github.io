@@ -1,4 +1,7 @@
-# What I learned designing a neural network that plays an arcade game
+---
+title: "Notebook: What I learned designing a neural network that plays an arcade game"
+tags: [Machine Learning]
+---
 
 My goal for this project was to become more familiar with how neural networks operate, and to understand the sorts of problems that they can be applied to for future projects. That is why for this project I opted not to use the a prebuilt machine learning library framework, but instead opted for an approach where I build up the math types using raw c#. Luckily I had a project left over from many years ago in which I developed a Matrix type and coded many of the math operators.  I felt that going down this road gave me a deeper insight into how a neural network works at the bare metal.
 

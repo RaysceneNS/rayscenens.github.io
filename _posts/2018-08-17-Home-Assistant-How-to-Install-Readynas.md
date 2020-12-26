@@ -1,8 +1,8 @@
 ---
+title: "How-To: Install Home Assistant on a Netgear ReadyNAS"
 tags: [ReadyNAS]
 ---
 
-# How To Install Home Assistant on a Netgear ReadyNAS
 
 A quick reference guide for how to perform the necessary steps to install homeassistant on a NetGear ReadyNAS.
 The purpose of this guide is to record the steps required to install Home Assistant on a NetGear ReadyNAS running OS 6.9.3.

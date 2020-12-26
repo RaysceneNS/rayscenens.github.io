@@ -1,8 +1,7 @@
 ---
+title: "One simple trick for deleting entities using Entity Framework"
 tags: [Entity Framework]
 ---
-
-# Removing entities from DB Sets in Entity Framework
 
 In this post I will show you a simple extension method that can be used to make your Entity Framework code more readable.
 

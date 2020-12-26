@@ -1,10 +1,9 @@
 ---
+title: "Homebrew Gear Position Indicator"
 tags: [Microcontroller]
 ---
 
-# Make. Homebrew Gear Position Indicator
-
-Sometimes you can't buy the exact thing you want from a store, those are great situations. Let me show you a hardware project where I designed the circuit and coded the firmware.
+Sometimes you can't buy the exact thing you want from a store, this is a wonderful opportunity where we can play with some new tools. Let me show you a hardware project where I designed the circuit and coded the firmware so that I could add a gear position indicator to my Motorbike. 
 
 ## The problem
 

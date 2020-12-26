@@ -1,8 +1,7 @@
 ---
+title: "Levenshtein Edit Distance Algorithm "
 tags: [Algorithms]
 ---
-
-# Levenshtein Edit Distance Algorithm
 
 There are many algorithms in Computer Science that help us to understand our data in meaningful ways. Edit distance algorithms are one such set of tools.
 

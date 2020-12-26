@@ -1,8 +1,7 @@
 ---
+title: "Validate JWT Token signed with RS256 for use within Microsoft Dynamics 365 CRM"
 tags: [Crypto,Dynamics]
 ---
-
-# Validate JWT Token signed with RS256 for use within Microsoft Dynamics 365 CRM
 
 How to secure an external web API call for use within Microsoft Dynamics 365 CRM Portals.
 

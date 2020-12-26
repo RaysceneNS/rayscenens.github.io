@@ -1,8 +1,7 @@
 ---
+title: "Implement IAuditEntity to automatically audit your entities"
 tags: [Entity Framework]
 ---
-
-# Implement IAuditEntity to automatically audit your entities
 
 By updating the audit information for your entities automatically as part of your SaveChanges() method, you eliminate the possibility that this crucial information is not managed correctly.
 

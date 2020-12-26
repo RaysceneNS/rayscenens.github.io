@@ -1,17 +1,18 @@
 ---
+title: "How to implement the Queue Collector within an Azure function"
 tags: [Azure]
 ---
 
-# How to implement the Queue Collector within an Azure function
-
-Here is a quick note to my future self.
-
 Whilst working with Azure functions you may come across a situation where you need
 to return multiple items to a queue, it isn't immediately obvious how to do that. Placing a message on the queue from within an
-Azure Function typically involves placing the `[return: Queue("function2Queue")]` attribute on the main function body. But to add many messages
-you must add a parameter decorated with `[Queue("function1Queue")] ICollector<__type__>` to the definition of the Run method.
+Azure Function typically involves placing the attribute 
+`[return: Queue("function2Queue")]` 
+on the main function body. But to add many messages
+you must add a parameter decorated with
+`[Queue("function1Queue")] ICollector<__type__>`
+to the definition of the Run method.
 
-This example creates an Http Triggered function that places multiple messages on a queue to be processed by the second function:
+The example below creates an HTTP Triggered function that places multiple messages on a queue to be processed by the second function:
 
 ``` c#
 

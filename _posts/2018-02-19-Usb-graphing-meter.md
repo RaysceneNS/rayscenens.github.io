@@ -1,9 +1,8 @@
 ---
+title: "Create a simple graphing voltage meter using a Digispark board"
 excerpt: "Graphing meters are a tool that record voltage levels over time. I only needed one for a short time, so I turned a DigiSpark into one."
 tags: [Microcontroller]
 ---
-
-# USB Graphing meter built using a Digispark
 
 I few months ago I sold my oscilloscope, a very shiny Rigol DS1054Z. If you've ever looked into buying an oscilloscope for hobby purposes then you will surely have heard from many people who recommend this mode, for its 50Mhz 4 channel capabilities and its ahem ... _upgrade ability_. While I too was smitten with the new toy at first, it remained shiny a year after its initial purchase as I never really gelled with its UX. Often I would long for a simple scroll bar to move the graph left or right, and I longed to be able to enter triggers by quickly typing values into a keyboard.
 

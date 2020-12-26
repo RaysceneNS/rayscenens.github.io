@@ -1,8 +1,7 @@
 ---
+title: "Configure your Angular applications with Server Environment Variables"
 tags: [Angular]
 ---
-
-# Configure your Angular applications with Server Environment Variables
 
 To configure an angular client to receive environment variables as set on the host Server. This allows us to promote our code base between environments without altering our client files. This could also be used in a scenario where we take advantage of Azure slotting to provide slot persistent settings to the client during a swap.
 

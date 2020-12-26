@@ -1,8 +1,7 @@
 ---
+title: "Create Task Asynchronous style calls from Event Handlers"
 tags: [.Net]
 ---
-
-# Create Task Asynchronous style calls from Event Handlers
 
 If you find yourself dealing with a lot of legacy asynchronous code that uses event handlers. You may want to wrap these legacy event calls using the new .Net Task Asynchronous style wrappers.
 

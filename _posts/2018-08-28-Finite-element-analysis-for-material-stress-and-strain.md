@@ -1,4 +1,7 @@
-# Library that performs finite element analysis
+---
+title: ".Net Library for finite element analysis"
+tags: [Algorithm]
+---
 
 Finite element analysis is a really cool technique that can be applied to solve lots of engineering problems. Imagine that you're job is to model how a structural part will react when a force is applied to it. Within the material there could be trillions of atoms that are interacting with each other, some pushing and some pulling one another, how would you begin to compute those areas that are high stress? That is what finite elements do for us, we can break down the problem space by building a mesh.
 

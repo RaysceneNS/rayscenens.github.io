@@ -1,8 +1,7 @@
 ---
+title: "How-to use Google Assistant to control AudioStation on your home NAS"
 tags: ["Google Assistant", AudioStation, Synology]
 ---
-
-# How-to use google assistant to call AudioStation
 
 ## Problem
 

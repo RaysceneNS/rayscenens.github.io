@@ -1,8 +1,7 @@
 ---
+title: "Canvas App can't see ModelDrivenFormIntegration.Item at App Start"
 tags: [Power Apps]
 ---
-
-# Canvas App can't see ModelDrivenFormIntegration.Item at App Start
 
 ## Problem
 

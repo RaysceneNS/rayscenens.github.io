@@ -1,8 +1,7 @@
 ---
+title: "How-to Setup OpenIDConnect in OWIN MVC project"
 tags: [OAuth,.Net]
 ---
-
-# How-to Setup OpenIDConnect in OWIN MVC project
 
 Open ID Connect, is a protocol that extends OpenAuth with basic profile support. Implementing it in an OWIN (Open Web Interface for .NET) MVC project comes down to a series of steps.
 

@@ -1,8 +1,7 @@
 ---
+title: "Passing parameters to Power Automate from CanvasApp"
 tags: [Power Apps,Power Automate]
 ---
-
-# Passing parameters to Power Automate from CanvasApp
 
 Recently while developing a CanvasApp using the Microsoft Power Platform I came across an error message at the point that I was calling a Power Automate workflow. The workflow had been working up until this point but I added a new parameter, and now things weren't working.
 
