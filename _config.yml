@@ -8,6 +8,7 @@ author:
   name: Racine Ennis
   picture: /assets/images/myself.jpg
 google_analytics: UA-121767683-1
+permalink: "/:title"
 
 github_username: RaySceneNS
 logo: /assets/icons/logo.svg
