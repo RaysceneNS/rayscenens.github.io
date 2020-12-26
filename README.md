@@ -17,13 +17,9 @@ This website is built using the Jekyll static site generator.
 You will need to install the Ruby devkit,
 
 * on Windows: The easiest way is to use the [Ruby Installer](https://rubyinstaller.org).
-* on Linux: `sudo apt install ruby-dev`
+* on Linux: `sudo apt install ruby-dev  libxslt-dev libxml2-dev zlib1g-dev`
 
-Validate that ruby is installed with the following command.
-
-```PowerShell
-ruby --version
-```
+Validate that ruby is installed with `ruby --version` the following command.
 
 Install bundler (allow network access if prompted)
 
