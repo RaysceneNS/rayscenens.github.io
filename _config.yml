@@ -21,6 +21,10 @@ search_provider: lunr
 disqus:
   shortname: racineennis-ca
 
+# Liquid
+liquid:
+  error_mode: strict
+
 # Build settings
 markdown: kramdown
 remote_theme: "mmistakes/jekyll-theme-basically-basic"
@@ -36,6 +40,26 @@ feed:
 paginate: 10
 paginate_path: /page:num/
 
+# Exclude from processing.
+exclude:
+  - .asset-cache
+  - .bundle
+  - .codeclimate.yml
+  - .editorconfig
+  - .gitattributes
+  - .jekyll-assets-cache
+  - .sass-cache
+  - .scss-lint.yml
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - Rakefile
+  - README
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
 # Front Matter Defaults
 defaults:
   # _posts
@@ -44,4 +68,4 @@ defaults:
       type: posts
     values:
       layout: post
-      read_time: false
+      read_time: true
