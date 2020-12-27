@@ -3,7 +3,7 @@ title: "How-to use Google Assistant to control AudioStation on your home NAS"
 tags: ["Google Assistant", AudioStation, Synology]
 ---
 
-Like many folks who own a Synology NAS I watched with envy as folks in the Alexa universe received love from the development team at Synology to command and control playback of the media that they had placed into the AudioStation app, while those of us within the Googleverse got nada. ![google_assistant](/assets/images/2020/12/20/audiostation_command.png)
+Like many folks who own a Synology NAS I watched with envy as folks in the Alexa universe received love from the development team at Synology to command and control playback of the media that they had placed into the AudioStation app, while those of us within the Googleverse got nada. ![google_assistant](/assets/images/2020/12/20/audiostation_command.webp)
 
 Time to take matters into my own hands.
 
@@ -150,7 +150,7 @@ Use the following command to add a client to the OAuth list. Make note of the cl
 ```
 
 Now you should see something like the following in your OAuth service blade.
-![Alternate Product](/assets/images/2020/12/20/oauth_setup.png)
+![Alternate Product](/assets/images/2020/12/20/oauth_setup.webp)
 
 ### Linking the google action:
 
