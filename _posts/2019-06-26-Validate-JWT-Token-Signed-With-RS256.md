@@ -5,8 +5,6 @@ tags: [Crypto,Dynamics]
 
 How to secure an external web API call for use within Microsoft Dynamics 365 CRM Portals.
 
-## Overview
-
 With the April 2019 release of Microsoft Dynamics a new feature was added that provides an endpoint that can be used to obtain secure access tokens that contain user identity information. The addition of this feature provides a solution that can be used to call external Web API's on behalf of the user that is logged into the CRM application.
 
 The authorization process uses OAuth implicit grant type flow.

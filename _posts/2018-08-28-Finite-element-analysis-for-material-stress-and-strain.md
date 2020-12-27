@@ -1,9 +1,9 @@
 ---
-title: ".Net Library for finite element analysis"
+title: ".Net Library for Finite Element Analysis"
 tags: [Algorithm]
 ---
 
-Finite element analysis is a really cool technique that can be applied to solve lots of engineering problems. Imagine that you're job is to model how a structural part will react when a force is applied to it. Within the material there could be trillions of atoms that are interacting with each other, some pushing and some pulling one another, how would you begin to compute those areas that are high stress? That is what finite elements do for us, we can break down the problem space by building a mesh.
+Finite element analysis is a really cool technique that can be applied to solve lots of engineering problems. Imagine that you're job is to model how a structural part will react when a force is applied to it. Within the material there could be trillions of atoms that are interacting with each other, some pushing and some pulling one another, how would you begin to compute those areas that are high stress? That is what finite element analysis does for us, we can break down the impossibly large problem into smaller pieces by meshing the physical structure and then computing the interactions of each node in our mesh, think of it as eating the elephant one byte at a time. ![result](/assets/images/2018/08/28/screen2.png)
 
 ## Meshing
 
@@ -40,6 +40,5 @@ Next we assign physical properties to represent a material that our part is made
 
 For our test we need to put the material under some kind of stress, to do this we will lock the material along it's bottom left and bottom right edges. This is accomplished by assigning a locking function to disallow XY movement to all nodes along these edges (the proverbial immovable object). Next we apply several large forces vectors along the upper middle boundary of the material, these vectors are facing in the downward direction (-Y) to simulate the effect of a large mass. This system is fed into the calculation engine and the effective Von Mises stress are calculated at each element in the model. We also calculated the relative displacement of all the nodes as dX and dY.
 
-![result](/assets/images/2018/08/28/screen2.png)
 
 Project files are available on [GitHub](https://github.com/RaysceneNS/FiniteElementModels)

@@ -3,7 +3,7 @@ title: "Levenshtein Edit Distance Algorithm "
 tags: [Algorithms]
 ---
 
-There are many algorithms in Computer Science that help us to understand our data in meaningful ways. Edit distance algorithms are one such set of tools.
+There are many algorithms in Computer Science that help us to understand our data in meaningful ways. Edit distance algorithms are one such set of tools. They tell us the minimum number of edits that must be made in order to turn a source input string into a destination string, thus the 'distance' from out source to our destination.
 
 ## What is it
 
@@ -101,3 +101,5 @@ public class LevenshteinEditDistance
     }
 }
 ```
+
+The code above may also be used within a sql server clr module, a handy thing to perform likeness tests directly on our database, which can be useful to cleanup or analyze our tables. 

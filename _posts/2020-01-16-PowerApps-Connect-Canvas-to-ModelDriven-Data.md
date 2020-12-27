@@ -3,8 +3,6 @@ title: "Canvas App can't see ModelDrivenFormIntegration.Item at App Start"
 tags: [Power Apps]
 ---
 
-## Problem
-
 I started working on a canvas app using the Microsoft Power Platform. My application is placed on a Model driven form as a custom control. It was supposed to integrate with data provided by the Model Driven form and then prompt the user to either edit or create the data, presenting a separate screen for each task. At first I thought that the OnDataRefresh event would fire at the time that the model driven data finished loading in the background. It turned out that it isn’t possible to navigate to another screen from within the OnDataRefreshAction, so I needed to come up with another way.
 
 ## Solution
