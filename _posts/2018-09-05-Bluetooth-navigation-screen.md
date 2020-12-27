@@ -3,10 +3,9 @@ title: "Bluetooth connected Navigation display"
 tags: [Microcontroller]
 ---
 
-The goal of this project is to create a low cost display that can be mounted to the handlebars or fairing of any motorcycle to provide a display of the riders route navigation. GPS navigation is performed via an app running on the users smart phone. Directions are communicated over Bluetooth from the the phone to the display module discussed below. The display is designed to be minimally distracting and provides the following information to the rider:
-![motion shot](/assets/images/2018/09/05/motion.gif)
+The goal of this project is to create a low cost display that can be mounted to the handlebars or fairing of any motorcycle to provide a display of the riders route navigation. GPS navigation is performed via an app running on the users smart phone. Directions are communicated over Bluetooth from the the phone to the display module discussed below. The display is designed to be minimally distracting and provides the following information to the rider: ![screen shot 1](/assets/images/2018/09/05/screen%20cap%201.jpg)
 
-![screen shot 1](/assets/images/2018/09/05/screen%20cap%201.jpg)
+![motion shot](/assets/images/2018/09/05/motion.webm)
 
 * Direction of next turn.
 * Distance to next turn.
@@ -170,7 +169,7 @@ I elected to make use of the built in ISR handler ```ISR(USART0_RX_vect)``` for 
 
 ## Circuit
 
-![circuit schematic](/assets/images/2018/09/05/schematic.png)
+![circuit schematic](/assets/images/2018/09/05/schematic.webp)
 
 This board layout is created using a single side of the PCB. This made for a simpler build of the printed circuit board at home as there was no need to register a front and back layout in alignment with one another. I find that using a UV light source and pre-sensitized copper clad boards makes for a very clean layout that can be etched reliably.
 
