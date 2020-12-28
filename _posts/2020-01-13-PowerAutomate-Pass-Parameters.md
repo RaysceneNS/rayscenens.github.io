@@ -13,9 +13,9 @@ If your like me and get tired of rebinding the connections to your flows all the
 
 Simply place a Parse JSON action at the top of your Power Automate designer and provide a schema that describes your parameters.
 
-To pass the JSON from your App to Power Automate use the  [JSON()](https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/functions/function-json>) function to format the data parameter, like so.
+To pass the JSON from your App to Power Automate use the  [JSON()](https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/functions/function-json) function to format the data parameter, like so.
 
-```vbn
+```vb
 'PowerApp->Workflow'.Run(
     JSON(
         {
