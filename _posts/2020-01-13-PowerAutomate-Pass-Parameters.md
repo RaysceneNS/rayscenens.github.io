@@ -9,7 +9,7 @@ Recently while developing a CanvasApp using the Microsoft Power Platform I came 
 
 The problem here is that the parameters sent from Power Apps to Power Automate are now out of sync, to get around this you need to remove and re-add the Power Automate workflow connection from your app.
 
-If your like me and get tired of rebinding the connections to your flows all the time then you can replace your parameters with a single JSON string in your Power Automate workflow.
+If like me you are tired of constantly rebinding the connections to your flows then you can replace your parameters with a single JSON string in your Power Automate workflow.
 
 Simply place a Parse JSON action at the top of your Power Automate designer and provide a schema that describes your parameters.
 
