@@ -31,7 +31,7 @@ In order to elevate privelege from admin to root on synology dsm enter the follo
 
 We will need to register a client entry in the server to allow google assistant to request an OAuth token exchange.
 
-Add an oauth app entry for our purposes, credits to Dominik for this blog post https://medium.com/@4c.dmnk/take-control-over-synologys-oauth-service-f96114be3707 where he digs into the Oauth services. 
+Add an oauth app entry for our purposes, credits to Dominik for this [blog post](https://medium.com/@4c.dmnk/take-control-over-synologys-oauth-service-f96114be3707) where he digs into the Oauth services. 
 
 There are several system utilities designed to modify the records contained within the synology OAuth client registration database in the folder `/usr/local/packages/@appstore/OAuthService/tools`.
 
@@ -68,16 +68,26 @@ I then setup nginx on the synology to log all relevant details of the HTTP traff
 All functions encode inputs using application/x-www-form-urlencoded, results are returned in json format. 
 All POST functions expect a bearer token to be supplied, GET functions use the query string param '_oat' to pass authentication tokens. 
 
-### Voice Assistant API methods:
+## Voice Assistant API methods:
 
-#### count_search;
+### count_search()
  Used to return the number of results for a query, any attribute in the track maybe queried [album/artist/title/etc...]
 
-example:
 
 ```HTTP
-POST /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Browse
-title=%22songname%22&api=SYNO.AudioStation.VoiceAssistant.Browse&method=count_search&version=1
+POST /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Browse HTTP/1.1
+Host: server
+Content-Type: application/x-www-form-urlencoded
+Authentication: Bearer 123ABCDEF...
+Accept: application/json
+
+title=%22songname%22&api=SYNO.AudioStation.VoiceAssistant.Browse&method=count_search&version=1 
+```
+
+```HTTP
+Server: nginx
+Date: _now_
+Content-Type: application/json
 
 {
     "data": {
@@ -87,12 +97,23 @@ title=%22songname%22&api=SYNO.AudioStation.VoiceAssistant.Browse&method=count_se
 }
 ```
 
-#### search;
+### search()
  Used to return the details of tracks that match a query attribute [album/artist/title/etc...]
 
 ```HTTP
-POST /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Browse
+POST /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Browse HTTP/1.1
+Host: server
+Content-Type: application/x-www-form-urlencoded
+Authentication: Bearer 123ABCDEF...
+Accept: application/json
+
 offset=0&limit=10&title=%22songname%22&sort_by=%22album%22&api=SYNO.AudioStation.VoiceAssistant.Browse&method=search&version=1
+```
+
+```HTTP
+Server: nginx
+Date: _now_
+Content-type: application/json
 
 {
     "data": {
@@ -111,13 +132,19 @@ offset=0&limit=10&title=%22songname%22&sort_by=%22album%22&api=SYNO.AudioStation
 }
 ```
 
-#### stream;
+### stream()
  Returns the audio stream to play, the optional parameter ['method=transcode'] may be added to transcode non mp3 files on the fly.
 
 ```HTTP
-GET /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Stream?api=SYNO.AudioStation.VoiceAssistant.Stream&method=stream&version=1&track_id=1234&_oat=%22_bearer_token_here_%22
+GET /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Stream?api=SYNO.AudioStation.VoiceAssistant.Stream&method=stream&version=1&track_id=1234&_oat=%22_bearer_token_here_%22 HTTP/1.1
+```
 
-..binary file stream response body...
+```HTTP
+Server: nginx
+Date: _now_
+Content-type: application/binary
+
+.. binary file stream response body ...
 ```
 
 # Create Google Action project
