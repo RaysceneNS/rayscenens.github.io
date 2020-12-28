@@ -3,7 +3,7 @@ title: "One simple trick for deleting entities using Entity Framework"
 tags: [Entity Framework]
 ---
 
-In this post I will show you a simple extension method that can be used to make your Entity Framework code more readable.
+I want to show you a simple extension method that can be used to make your Entity Framework code more readable.
 
 ## Mark Entities for Removal without Prior Retrieval
 

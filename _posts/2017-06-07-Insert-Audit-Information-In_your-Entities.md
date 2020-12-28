@@ -3,13 +3,15 @@ title: "Implement IAuditEntity to automatically audit your entities"
 tags: [Entity Framework]
 ---
 
-By updating the audit information for your entities automatically as part of your SaveChanges() method, you eliminate the possibility that this crucial information is not managed correctly.
+Apply the audit information for your Entity Framework entities automatically as part of the SaveChanges() method, doing so ensures you remove the possibility that this crucial information is not managed consistently.
 
 ## Overview
 
-Sometimes its the little things that make big differences to the quality of a design. Needing to remember to set audit information into your entities when working with an ORM like Entity Framework will lead to inconsistent auditing of fields. However if we design a solution that can perform this task automatically as we use the entity then we will have removed a potential source of bugs.
+Sometimes its the little things that make big differences to the quality of a design. Needing to remember to manually update the audit information within your entities whilst working with an ORM like Entity Framework will lead to inconsistent auditing of fields, this can be worse than having no audit information at all, as it can mislead your operations team. However if we design a solution that can perform this task automatically as we use the entity then we will have removed a potential source of bugs.
 
-This interface defines the data fields that store the audit information.
+## Solution
+
+Create the following interface to define the data fields that store the audit information. This will ensure a consistent layout to the fields that are audited for each entity.
 
 ```c#
 /// <summary>
@@ -24,7 +26,7 @@ public interface IAuditEntity
 }
 ```
 
-To use this interface we override the SaveChanges() method on our DBContext so that we call a new method AuditEntities()
+To use this interface we override the SaveChanges() method on our DBContext so that we now call a new method AuditEntities() that is inserted into the usual process of change detection and save.
 
 ```c#
 public override int SaveChanges()
@@ -80,3 +82,5 @@ private void AuditEntities()
     }
 }
 ```
+
+Now whenever we modify the entity, it will automatically set the modified date to the current system date (UTC thank you) and the current user principal of the running thread. Combined with an authentication mechanism that sets the thread principal in this way we can identify the source account even if this is a web api call.

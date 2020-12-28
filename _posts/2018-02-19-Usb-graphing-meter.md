@@ -58,7 +58,7 @@ void loop() {
 }
 ```
 
-p.s. The result of analogRead is a 10bit value. We could and _should_ take advantage of the ATTiny's ability to return an 8-bit ADC value directly from the ADCH register, provided we set the ```ADCSRB = (1 << ADLAR);``` to instruct the ADC that we want our results to be left shifted << 2.
+p.s. The result of analogRead is a 10bit value. We could and _should_ take advantage of the ATTiny's ability to return an 8-bit ADC value directly from the ADCH register, provided we set the `ADCSRB = (1 << ADLAR);` to instruct the ADC that we want our results to be left shifted << 2.
 p.p.s. Relying on loop is not a good way to ensure that our ADC is driving the messages into the USB port, may look at performing the writes to USB based on an Interrupt service routine that is called when the ADC sample is filled and thus calls back to our code.
 
 After flashing the firmware to the Digispark the device will begin sampling values on port 0 via the built in analog to digital hardware,

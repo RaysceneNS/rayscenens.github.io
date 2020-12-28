@@ -9,7 +9,7 @@ My goal for this project was to become more familiar with how neural networks op
 
 This network layer is comprised of a matrix with a size of [9,9] nodes. The nodes 1-8 are wired to represent signals from the 8 polar directions of the ship looking out into space. The signal level of the node ranging from 0.0 -> 1.0 dependent on how close an asteroid is in that particular direction. To determine if a threat signal is present a series of points along the ray projected from the ship in the direction of sight are tested for intersections with the asteroids. The signals are calculated as the inverse of the distance and are limited by how far the ship can see in any direction (else the sight would wrap around the board).
 
-[vision test](/assets/images/2018/08/24/visiontest.png)
+![vision test](/assets/images/2018/08/24/visiontest.png)
 This shows how a ray is traced from the ship coordinate through the asteroid field to produce a measure of how close an asteroid is to the ship in a given direction.
 
 ## Output layer
@@ -26,4 +26,4 @@ When running the program there are a large number of dud players, these are netw
 
 The vision mechanism is poor reflection of the game state. The problem with the vision layer is apparent when you consider the mechanics of the game. As it stands now the signal received into this layer for an asteroid that is moving towards the ship is identical to the signal for an asteroid that is travelling past or away from the ship. What is needed is some mechanism to encode the motion vector relative to the ship so that the player AI can determine the threat level and respond accordingly.
 
-The project files are available on [GitHub](https://github.com/RaysceneNS/Stroids/tree/master/Stroids)
+The  [Project Files](https://github.com/RaysceneNS/Stroids/tree/master/Stroids) are available on GitHub.
