@@ -70,8 +70,11 @@ All POST functions expect a bearer token to be supplied, GET functions use the q
 
 ### Voice Assistant API methods:
 
-- count_search; Used to return the number of results for a query, any attribute in the track maybe queried [album/artist/title/etc...]
+#### count_search;
+ Used to return the number of results for a query, any attribute in the track maybe queried [album/artist/title/etc...]
+
 example:
+
 ```HTTP
 POST /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Browse
 title=%22songname%22&api=SYNO.AudioStation.VoiceAssistant.Browse&method=count_search&version=1
@@ -84,7 +87,9 @@ title=%22songname%22&api=SYNO.AudioStation.VoiceAssistant.Browse&method=count_se
 }
 ```
 
-- search; Used to return the details of tracks that match a query attribute [album/artist/title/etc...]
+#### search;
+ Used to return the details of tracks that match a query attribute [album/artist/title/etc...]
+
 ```HTTP
 POST /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Browse
 offset=0&limit=10&title=%22songname%22&sort_by=%22album%22&api=SYNO.AudioStation.VoiceAssistant.Browse&method=search&version=1
@@ -106,7 +111,8 @@ offset=0&limit=10&title=%22songname%22&sort_by=%22album%22&api=SYNO.AudioStation
 }
 ```
 
-- stream; Returns the audio stream to play, the optional parameter ['method=transcode'] may be added to transcode non mp3 files on the fly.
+#### stream;
+ Returns the audio stream to play, the optional parameter ['method=transcode'] may be added to transcode non mp3 files on the fly.
 
 ```HTTP
 GET /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Stream?api=SYNO.AudioStation.VoiceAssistant.Stream&method=stream&version=1&track_id=1234&_oat=%22_bearer_token_here_%22
