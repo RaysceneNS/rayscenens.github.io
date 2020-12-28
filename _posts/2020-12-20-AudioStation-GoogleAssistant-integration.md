@@ -107,13 +107,12 @@ offset=0&limit=10&title=%22songname%22&sort_by=%22album%22&api=SYNO.AudioStation
 ```
 
 - stream; Returns the audio stream to play, the optional parameter ['method=transcode'] may be added to transcode non mp3 files on the fly.
+
 ```HTTP
 GET /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Stream?api=SYNO.AudioStation.VoiceAssistant.Stream&method=stream&version=1&track_id=1234&_oat=%22_bearer_token_here_%22
 
-[..binary file stream response...]
+..binary file stream response body...
 ```
-
-
 
 # Create Google Action project
 
@@ -145,7 +144,7 @@ displayname: Any name you want here is fine.
 
 Use the following command to add a client to the OAuth list. Make note of the client id and secret returned from this function as we will require these later on in order to complete the service registration with Google. 
 
-```
+```SHELL
 # ./oauth_clientinfo --client-add oauth-redirect.googleusercontent.com/r/[some-project-name] AudioStation.voiceassistant GoogleAssistant 
 ```
 
