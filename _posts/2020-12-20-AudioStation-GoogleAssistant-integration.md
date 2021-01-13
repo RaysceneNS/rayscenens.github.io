@@ -64,6 +64,35 @@ I was able to simulate an Alexa client using the excellent [echosim tool](https:
 
 I then setup nginx on the synology to log all relevant details of the HTTP traffic to a log file while I asked Alexa to do various functions, this [post by Rob D.](https://community.synology.com/enu/forum/14/post/124369) was helpful in setting up nginx to perform the logging.
 
+### Recipe for logging requests to nginx
+
+Based on that post I performed the following actions:
+
+- Edit nginx mustache file to allow access, Comment out the "access_log off" line and uncomment the line below it
+`vi /usr/syno/share/nginx/nginx.mustache`
+Added the request_body / accept,authorization,content-type headers to the log:
+
+```
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+        '$status $body_bytes_sent $request_body "$http_referer"'
+        '"$http_user_agent" "$http_x_forwarded_for" "$http_authorization" "$content_type" "$http_accept"';
+```
+
+- Fix the permissions of the /var/log/nginx directory by editing the nginx startup file:
+` sudo vi /usr/share/init/nginx.conf `
+Look for the line that starts with "MakeDirectory /var/log/nginx" and change the access permission to 0755
+
+- Fix file permissions for the access log and error log (add global user read/write) in the syslog-ng nginx config.  (Nginx is configured to send its logs through syslog-ng.)
+` sudo vi /etc.defaults/syslog-ng/patterndb.d/nginx.conf `
+Find the string 'file("/var/log/nginx/access.log"' and add the string "perm(0666)" immediately after.  Do the same with the error.log entry.  (Or you can use 0644 to only allow read permissions.) Full line should look like this:
+
+- Restart nginx, syslog-ng
+`sudo synoservice --restart nginx`
+`sudo synoservice --restart syslog-ng`
+
+Logs are located in directory /var/log/nginx/access.log
+
+note: log files can be truncated using `truncate -s 0 access.log`
 
 All functions encode inputs using application/x-www-form-urlencoded, results are returned in json format. 
 All POST functions expect a bearer token to be supplied, GET functions use the query string param '_oat' to pass authentication tokens. 
