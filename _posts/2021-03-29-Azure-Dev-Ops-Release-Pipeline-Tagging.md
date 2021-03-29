@@ -13,7 +13,7 @@ This script requires access to the OAuth token from within your pipeline, this i
 To enable this you must go to your Release pipeline in Azure Devops and select the Agent that you will run on ![screen0](/assets/images/2021/3/29/screen0.png) The enable the option 'Allow scripts to access the OAuth token' checkbox of the agent property panel for the agent that will run this task.
 ![screen1](/assets/images/2021/3/29/screen1.png)
 
-After that is done simply add a new PowerShell Script task to your existing release pipeline ![screen2](/assets/images/2021/3/29/screen2.png) and paste the following script into it:
+After that is done simply add a new PowerShell Script task ![screen2](/assets/images/2021/3/29/screen2.png) to your existing release pipeline ![screen3](/assets/images/2021/3/29/screen3.png) and paste the following script into it:
 
 ```PowerShell
 $TagName = "$env:RELEASE_RELEASENAME-$env:SYSTEM_STAGEDISPLAYNAME"
