@@ -3,323 +3,104 @@ title: "How-to use Google Assistant to control AudioStation on your home NAS"
 tags: ["Google Assistant", AudioStation, Synology]
 ---
 
-Like many folks who own a Synology NAS I watched with envy as folks in the Alexa universe received love from the development team at Synology to command and control playback of the media that they had placed into the AudioStation app, while those of us within the Googleverse got nada. ![google_assistant](/assets/images/2020/12/20/audiostation_command.webp)
+Like many folks who own a Synology NAS I watched with envy as folks in the Alexa universe received love from the development team at Synology to command and control playback of the media that they had placed into the AudioStation app, while those of us within the Google verse got nada. Time to take matters into my own hands. ![google_assistant](/assets/images/2020/12/20/audiostation_command.webp)
 
-Time to take matters into my own hands.
+ In order to figure out how to make this work I would have to do some digging into how the [Alexa skill communicated with AudioStation](https://racineennis.ca/2020/12/19/AudioStation-GoogleAssistant-investigation).
 
-## Investigate Alexa Skill
+If you would like to setup your own Google Assistant to Synology AudioStation link then you will need to have setup a DNS name for your NAS and have a valid SSL certificate for that same DNS name as well as have exposed port 5001 to the internet. Essentially you must be able to login to your DSM from the internet without getting any certificate warnings in your web browser. If you meet these requirements then follow these steps:
 
-There was very little information available from Synology as to how the Alexa skill integration with AudioStation worked, so I had to do a little digging. I knew that there were essentially two pieces in play here. First the local server would need to participate in an OAuth token exchange to allow the external commands from the Amazon cloud to control the api services running locally on the NAS.
+## Create a Google Actions project
 
-Second I would need to figure out the format of the API that was used to command and control AudioStation when using the voice commands.
+In order for commands received by your Google assistant to do anything you'll need to setup a Google actions project. Voice assistant commands are connected to a set of server less functions that can communication with the AudioStation service available on our NAS. We will setup our action in test mode only as the connection will be linked to our servers DNS name.
 
+Go to <https://console.actions.google.com/>
 
-### Synology OAuth Service
+Create a new project. You may enter any project name that you like, be sure to select the appropriate language and region for your situation. Now press 'Create Project'.
+![new project](/assets/images/2020/12/20/google_console_new_project.png)
 
-Looking at the applications available within the NAS I can see there is application labeled 'OAuth Service', hmm interesting.
+Next we will have to select the kind of action that we are building, select 'Custom' and the press 'Next'.
+![project type](/assets/images/2020/12/20/google_console_project_type.png)
 
-To login to synology via SSH you'll need to enable ssh in the control panel of DSM under the terminal setting page.
-note: Set a custom port number for ssh now or else the synology security adviser will nag you endlessly.
+Now select Blank project, we will be configuring all of the conversation components ourselves. Then press 'Start Building' 
+![how to build](/assets/images/2020/12/20/google_console_how_to_build.png)
 
+Once the project is created we need to take note of the Project Id, this will be required several times throughout the setup. The project Id can be found by Going to the new project, click the ellipsis, ![settings](/assets/images/2020/12/20/google_console_settings.png)
+ select 'Project settings' from the menu. The Project ID is displayed here in the project settings page.
+ ![project id](/assets/images/2020/12/20/google_console_project_id.png)
 
-To Login, open a command terminal and use your OS' builtin ssh command to establish a session on the Synology machine. `ssh admin@ipaddress -p 22`
+## Register client application with Synology OAuth Service
 
+We will use the existing OAuth service on the Synology NAS. This is the same service that is used by the Alexa skill. Adding a new database entry allows Google assistant to request an authorization token for access to the AudioStation API service using authorization code flow.
 
-In order to elevate privelege from admin to root on synology dsm enter the following command. When prompted for a password enter the admin account passwor again. `sudo -i`
-
-
-
-We will need to register a client entry in the server to allow google assistant to request an OAuth token exchange.
-
-Add an oauth app entry for our purposes, credits to Dominik for this [blog post](https://medium.com/@4c.dmnk/take-control-over-synologys-oauth-service-f96114be3707) where he digs into the Oauth services. 
-
-There are several system utilities designed to modify the records contained within the synology OAuth client registration database in the folder `/usr/local/packages/@appstore/OAuthService/tools`.
-
-
-
-
-
-### AudioStation Voice Assistant API
-
-Synology has scarce development documentation available at the [developer site](https://www.synology.com/en-global/support/developer)
-
-Due to the lack of documentation most of the commands will need to be inferred by watching the traffic sent between Alexa and DSM as the various functions  are exercised.
-
-There is a document that details the voice command structure for Alexa on this page [How to enable Audio Station skill on Amazon Alexa](https://www.synology.com/en-global/knowledgebase/DSM/tutorial/Multimedia/How_to_enable_Audio_Station_skill_on_Amazon_Alexa)
-
-essentially all english commands begin with the phrase "Alexa, ask AudioStation ..."
-```
-to	[play/start/search]
-            [song name]
-            the	[music/track/songs/audio] by [artist]
-            the album [album name]
-            the playlist [playlist name]
-what's playing
-what song is the song
-```
-
-Most of the verbs around Alexa integration appear to use the prefix SYNO.AudioStation.VoiceAssistant
-
-I was able to simulate an Alexa client using the excellent [echosim tool](https://echosim.io/welcome)
-
-I then setup nginx on the synology to log all relevant details of the HTTP traffic to a log file while I asked Alexa to do various functions, this [post by Rob D.](https://community.synology.com/enu/forum/14/post/124369) was helpful in setting up nginx to perform the logging.
-
-### Recipe for logging requests to nginx
-
-Based on that post I performed the following actions:
-
-- Edit nginx mustache file to allow access, Comment out the "access_log off" line and uncomment the line below it
-`vi /usr/syno/share/nginx/nginx.mustache`
-Added the request_body / accept,authorization,content-type headers to the log:
-
-```
-    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-        '$status $body_bytes_sent $request_body "$http_referer"'
-        '"$http_user_agent" "$http_x_forwarded_for" "$http_authorization" "$content_type" "$http_accept"';
-```
-
-- Fix the permissions of the /var/log/nginx directory by editing the nginx startup file:
-` sudo vi /usr/share/init/nginx.conf `
-Look for the line that starts with "MakeDirectory /var/log/nginx" and change the access permission to 0755
-
-- Fix file permissions for the access log and error log (add global user read/write) in the syslog-ng nginx config.  (Nginx is configured to send its logs through syslog-ng.)
-` sudo vi /etc.defaults/syslog-ng/patterndb.d/nginx.conf `
-Find the string 'file("/var/log/nginx/access.log"' and add the string "perm(0666)" immediately after.  Do the same with the error.log entry.  (Or you can use 0644 to only allow read permissions.) Full line should look like this:
-
-- Restart nginx, syslog-ng
-`sudo synoservice --restart nginx`
-`sudo synoservice --restart syslog-ng`
-
-Logs are located in directory /var/log/nginx/access.log
-
-note: log files can be truncated using `truncate -s 0 access.log`
-
-All functions encode inputs using application/x-www-form-urlencoded, results are returned in json format. 
-All POST functions expect a bearer token to be supplied, GET functions use the query string param '_oat' to pass authentication tokens. 
-
-## Voice Assistant API methods:
-
-### count_search()
- Used to return the number of results for a query, any attribute in the track maybe queried [album/artist/title/etc...]
-
-
-```HTTP
-POST /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Browse HTTP/1.1
-Host: server
-Content-Type: application/x-www-form-urlencoded
-Authentication: Bearer 123ABCDEF...
-Accept: application/json
-
-title=%22songname%22&api=SYNO.AudioStation.VoiceAssistant.Browse&method=count_search&version=1 
-```
-
-```HTTP
-Server: nginx
-Date: _now_
-Content-Type: application/json
-
-{
-    "data": {
-        "count": 9
-    },
-    "success": true
-}
-```
-
-### search()
- Used to return the details of tracks that match a query attribute [album/artist/title/etc...]
-
-```HTTP
-POST /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Browse HTTP/1.1
-Host: server
-Content-Type: application/x-www-form-urlencoded
-Authentication: Bearer 123ABCDEF...
-Accept: application/json
-
-offset=0&limit=10&title=%22songname%22&sort_by=%22album%22&api=SYNO.AudioStation.VoiceAssistant.Browse&method=search&version=1
-```
-
-```HTTP
-Server: nginx
-Date: _now_
-Content-type: application/json
-
-{
-    "data": {
-        "track": [
-            {
-                "album": "Song Album XXX",
-                "artist": "Artist YYY",
-                "codec": "mp3",
-                "file_extension": "mp3",
-                "id": 1234,
-                "title": "Title ZZZ"
-            }
-        ]
-    }
-    "success": true
-}
-```
-
-### stream()
- Returns the audio stream to play, the optional parameter ['method=transcode'] may be added to transcode non mp3 files on the fly.
-
-```HTTP
-GET /webapi/entry.cgi/SYNO.AudioStation.VoiceAssistant.Stream?api=SYNO.AudioStation.VoiceAssistant.Stream&method=stream&version=1&track_id=1234&_oat=%22_bearer_token_here_%22 HTTP/1.1
-```
-
-```HTTP
-Server: nginx
-Date: _now_
-Content-type: application/binary
-
-.. binary file stream response body ...
-```
-
-# Create Google Action project
-
-In order for commands received by your google assistant to do anything you'll need to setup a google actions project. We need to setup a google action project so that the voice assistant commands are connected to a set of serverless functions that cab communication with the AudioStation service on our NAS. We will setup our action in test mode only as the connection will be playing files on our server.
-
-
-Goto https://console.actions.google.com/ 
-
-Creating a new project under your account, next we will configure the assistant.
-
-I am using the name of Audio Station, the action can be named whatever you want, but it must be two words. You may also choose your preferred voice at this point. 
-![invocation settings](/assets/images/2020/12/20/invocation_settings.png)
-
-
-
-## Register OAuth client information
-
-Now we move back to the OAuth service on the Synology NAS, this time we will add the actual database entry that allows google assistant to receive an Authorization code using auth code flow.
-
-### Arguments
-
-- uri: Also we supply a redirect url to call, this again must match the location that we setup earlier. 
-- scope: Note here that we are asking for the same scope as the Alexa assistant uses, this is important as it limits what functions are available to be called.
-displayname: Any name you want here is fine.
-
-
-Use the following command to add a client to the OAuth list. Make note of the client id and secret returned from this function as we will require these later on in order to complete the service registration with Google. 
+From an SSH terminal connected to your NAS use the command `oauth_clientinfo --client-add` to add a client to the OAuth list. You must replace [some-project-id] with the id of the project that we created in the Google actions console earlier.
 
 ```SHELL
-# ./oauth_clientinfo --client-add oauth-redirect.googleusercontent.com/r/[some-project-name] AudioStation.voiceassistant GoogleAssistant 
+# ./oauth_clientinfo --client-add oauth-redirect.googleusercontent.com/r/[some-project-id] AudioStation.voiceassistant GoogleAssistant 
 ```
+
+Important! Make note of the client id and secret returned from calling  ouath_clientinfo as we require these later on to complete the service registration with Google.
 
 Now you should see something like the following in your OAuth service blade.
 ![Alternate Product](/assets/images/2020/12/20/oauth_setup.webp)
 
+## Install Google Actions CLI
 
-### Invocations
+The actions CLI is a Googles command line interface for working with  Actions projects. We will use the CLI to deploy Invocations and our web hook code to the Actions Console project we created earlier. 
 
-The goolge action consists of two major parts that need to be setup, first there is the action that defines how spoken phrases are mapped to actions. 
-
-#### Main Invocation
-
-This begins the mapping to our main scene when we say talk to Audio Station.
-![Main Invocation](/assets/images/2020/12/20/main_invocation.png)
-
-#### Deep Play Links
-
-These deep links allows us to immediately start album/song/artist playback.
-
-Like so for album,
-![Main Invocation](/assets/images/2020/12/20/deep_play_album.png)
-Again for song,
-![Main Invocation](/assets/images/2020/12/20/deep_play_song.png)
-And Artist
-![Main Invocation](/assets/images/2020/12/20/deep_play_artist.png)
-
-## Scene Setup
-
-Now we must setup the details of the various scenes.
-
-### Main Scene
-
-Our main scene is used to ensure that we have a valid user account linked to our service. This is necessary in order that we perform the OAuth flow to receive a token that will be accepted on the AudioStation server. If we have logged in as a Guest account then we will transition to a Guest Scene and stop, we can't play any media as a guest. If our account has not been linked to Audio Station then we transition to the account linking screen now.
-
-Once account linking is successful this scene serves to route intents to the various web hook handlers that we will setup later.
-
-![Main Scene](/assets/images/2020/12/20/main_scene.png)
-
-
-### Account Linking Scene
-
-Here we use the system account linking scene to create a link between our action and our api backend.
-
-![Account Linking Scene](/assets/images/2020/12/20/account_linking_scene.png)
-
-### Guest Scene
-
-This scene serves as an endpoint for our flow, used in the event that an account is not logged in at the time that this action is invoked. 
-
-![Guest Scene](/assets/images/2020/12/20/guest_scene.png)
-
-
-## Intents
-
-Intents are setup to perform the natural language understanding of our actions. In each intent we will setup a number of phrases that we map to the various inputs required within our webhook.
-
-For example within the play album intent, several different phrases can be entered that will match to the intent. In each one we map the part of the phrase that is our input parameter, in this case the 'album' type. When assistant performs the language translation we will receive the album as an input parameter for our function call. This hides all of the nitty gritty details from our handler.
-
-![Play Album Intent](/assets/images/2020/12/20/play_album_intent.png)
-
-Artist intent is setup similarily, like so
-![Play Artist Intent](/assets/images/2020/12/20/play_artist_intent.png)
-
-And finally, the song intent
-![Play Song Intent](/assets/images/2020/12/20/play_song_intent.png)
-
-## Webhook
-
-This is the area that houses the javascript functions that are actually fired when an intent is matched. 
-
-In here we will paste the code from [my Github](https://github.com/RaysceneNS/AudioStation-GoogleAssistant/Action/action.json) repository:
-
-The fulfillment project contains the Google functions that are executed by the action that we setup. This is where the actual code lives that communicates with the API that we saw earlier. Requests such as play song invoke a web search method and then return the first matching track as an Media stream.
-
-
-![webhook](/assets/images/2020/12/20/webhook.png)
-
-### Linking the google action:
-
-In the account linking form enter the following information:
-
-- Linking Type - Select Oauth + Authorization Code
-- Client ID: This is the client id returned from the OAuth registration step
-- Client Secret: This is the client secreet returned from the OAuth registration step.
-- Authorization URL: Enter publicly available url of your DSM (you must have a valid SSL Certificate installed on DSM) https://[my.synology.com]:5001/oauth/oauth_login.cgi
-- Token URL: https://[my.synology.com]:5001/oauth/oauth_token.cgi
-
-You form should look something like the following:
-
-![Account linking](/assets/images/2020/12/20/account_linking.png)
-
-
-# Setup
-
-The code on github can be used to setup your own environment with this Action.
-#### Actions Console
-1. From the [Actions on Google Console](https://console.actions.google.com/), **New project** > **Create project** > under **What kind of Action do you want to build?** > **Custom** > **Blank project**
-
-#### Actions CLI
+1. Node.js and NPM
+    + recommend installing using [nvm for Linux/Mac](https://github.com/creationix/nvm) and [nvm-windows for Windows](https://github.com/coreybutler/nvm-windows)
+1. Install the [Firebase CLI](https://developers.google.com/assistant/conversational/deploy-fulfillment)
+    + We recommend using MAJOR version `8`, `npm install -g firebase-tools@^8.0.0`
+    + Run `firebase login` with your Google account
 1. Install the [Actions CLI](https://developers.google.com/assistant/actionssdk/gactions)
-1. Navigate to `sdk/settings/settings.yaml`, and replace `<PROJECT_ID>` with your project ID
-1. Navigate to the `sdk/` directory by running `cd sdk` from the root directory of this project.
+
+## GitHub Code Deployment
+
+We will now deploy the code to setup our action, this is where we define how spoken commands are translated into requests for media playback.
+
+Create a new directory on your local computer and clone the GitHub repository to it using git
+
+```bash
+git clone https://github.com/RaysceneNS/AudioStation-GoogleAssistant.git
+``` 
+
+Navigate to `settings/settings.yaml` and make the following edits:
+
+1. replace '<PROJECT_ID>' with your project ID from Google Console
+1. replace '<SERVER_NAME>' with the DNS name of your Synology NAS
+1. replace '<CLIENT_ID>' with the client id returned from the OAuth registration we made earlier.
+
+### Add client secret to the project
+
+We must encrypt the client secret that was generated when we registered the OAuth client with Synology. Use the encrypt command to enter the client secret.
+
+```bash
+gactions encrypt
+Write your secret: *********************
+Encrypting your client secret
+```
+
+### Deploy the project code
+
+Now that our project is ready we can push the code from our local machine up to the Google cloud for testing.
+
 1. Run `gactions login` to login to your account.
 1. Run `gactions push` to push your project.
 1. Run `gactions deploy preview` to deploy the project.
 
-#### Environment Variables
-1. Go the to google [cloud console](https://console.cloud.google.com/).
-1. Select the project that this action is setup within.
-1. Select the cloud function that is deployed from the google actions console.
-1. Edit the clou function 
-1. Within the Variables, Networking and Advanced Settings area select Anvironment Variables.
-1. Enter a new variable named API_HOST and enter the domain name of the server that runs AudioStation i.e. xyz.synology.me 
+After the deployment is successful you should see be able to see the project within the Google Actions Console.
 
-# Testing
 
-Once the action and fulfillment are setup, you can begin a conversation with Audio Station using Google. Utterances must explicitly include 'Ask AudioStation' or else Google will take this to mean use the default music provider to satisfy the request. Try 'Ask Audio Station to play song ...'
+### Environment Variables
 
+One final step is to enter an environment variable that is used to connect the web hook handler code to the external DNS name of your NAS.
+
+1. Go to [https://console.cloud.google.com/](https://console.cloud.google.com/).
+1. Select the project that this action is setup within. ![Cloud Project Selection](/assets/images/2020/12/20/cloud_console_project.png)
+1. Select the cloud function that is deployed from the Google actions console. ![Console functions listing](/assets/images/2020/12/20/cloud_console_functions.png)
+1. Edit the cloud function by click on its name in the list of cloud functions. From the Function details page press Edit. ![Console function](/assets/images/2020/12/20/cloud_console_function.png)
+1. Expand RUNTIME, BUILD AND CONNECTIONS SETTINGS. Enter a new Runtime Environment variable named API_HOST and enter the domain name of the server that runs AudioStation i.e. my_server_dns.synology.me ![Variable Entry](/assets/images/2020/12/20/cloud_console_variable.png)
+
+## Testing
+
+Once the action and fulfillment are setup, you can begin a conversation with Audio Station using Google. Utterances must explicitly include 'Ask Audio Station' or else Google will take this to mean use the default music provider to satisfy the request. Note that this assumes that you've named your action Audio Station, replace as necessary for your situation.
