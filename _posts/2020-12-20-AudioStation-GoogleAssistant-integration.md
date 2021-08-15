@@ -7,7 +7,7 @@ Like many folks who own a Synology NAS I watched with envy as folks in the Alexa
 
  In order to figure out how to make this work I would have to do some digging into how the [Alexa skill communicated with AudioStation](https://racineennis.ca/2020/12/19/AudioStation-GoogleAssistant-investigation).
 
-If you would like to setup your own Google Assistant to Synology AudioStation link then you will need to have setup a DNS name for your NAS and have a valid SSL certificate for that same DNS name as well as have exposed port 5001 to the internet. Essentially you must be able to login to your DSM from the internet without getting any certificate warnings in your web browser. If you meet these requirements then follow these steps:
+If you would like to setup your own Google Assistant to Synology AudioStation link then you will need to have setup a DNS name for your NAS and have a valid SSL certificate for that same DNS name as well as have exposed the DSM port (5001 by default) to the internet. Essentially you must be able to login to your DSM from the internet without getting any certificate warnings in your web browser. If you meet these requirements then follow these steps:
 
 ## Create a Google Actions project
 
@@ -21,7 +21,7 @@ Create a new project. You may enter any project name that you like, be sure to s
 Next we will have to select the kind of action that we are building, select 'Custom' and the press 'Next'.
 ![project type](/assets/images/2020/12/20/google_console_project_type.png)
 
-Now select Blank project, we will be configuring all of the conversation components ourselves. Then press 'Start Building' 
+Now select Blank project, we will be configuring all of the conversation components ourselves. Then press 'Start Building'
 ![how to build](/assets/images/2020/12/20/google_console_how_to_build.png)
 
 Once the project is created we need to take note of the Project Id, this will be required several times throughout the setup. The project Id can be found by Going to the new project, click the ellipsis, ![settings](/assets/images/2020/12/20/google_console_settings.png)
@@ -38,14 +38,14 @@ From an SSH terminal connected to your NAS use the command `oauth_clientinfo --c
 # ./oauth_clientinfo --client-add oauth-redirect.googleusercontent.com/r/[some-project-id] AudioStation.voiceassistant GoogleAssistant 
 ```
 
-Important! Make note of the client id and secret returned from calling  ouath_clientinfo as we require these later on to complete the service registration with Google.
+Important! Make note of the client id and secret returned from calling  oauth_clientinfo as we require these later on to complete the service registration with Google.
 
 Now you should see something like the following in your OAuth service blade.
 ![Alternate Product](/assets/images/2020/12/20/oauth_setup.webp)
 
 ## Install Google Actions CLI
 
-The actions CLI is a Googles command line interface for working with  Actions projects. We will use the CLI to deploy Invocations and our web hook code to the Actions Console project we created earlier. 
+The actions CLI is a Googles command line interface for working with  Actions projects. We will use the CLI to deploy Invocations and our web hook code to the Actions Console project we created earlier.
 
 1. Node.js and NPM
     + recommend installing using [nvm for Linux/Mac](https://github.com/creationix/nvm) and [nvm-windows for Windows](https://github.com/coreybutler/nvm-windows)
@@ -62,7 +62,7 @@ Create a new directory on your local computer and clone the GitHub repository to
 
 ```bash
 git clone https://github.com/RaysceneNS/AudioStation-GoogleAssistant.git
-``` 
+```
 
 Navigate to `settings/settings.yaml` and make the following edits:
 
@@ -90,7 +90,6 @@ Now that our project is ready we can push the code from our local machine up to 
 
 After the deployment is successful you should see be able to see the project within the Google Actions Console.
 
-
 ### Environment Variables
 
 One final step is to enter an environment variable that is used to connect the web hook handler code to the external DNS name of your NAS.
@@ -99,7 +98,7 @@ One final step is to enter an environment variable that is used to connect the w
 1. Select the project that this action is setup within. ![Cloud Project Selection](/assets/images/2020/12/20/cloud_console_project.png)
 1. Select the cloud function that is deployed from the Google actions console. ![Console functions listing](/assets/images/2020/12/20/cloud_console_functions.png)
 1. Edit the cloud function by click on its name in the list of cloud functions. From the Function details page press Edit. ![Console function](/assets/images/2020/12/20/cloud_console_function.png)
-1. Expand RUNTIME, BUILD AND CONNECTIONS SETTINGS. Enter a new Runtime Environment variable named API_HOST and enter the domain name of the server that runs AudioStation i.e. my_server_dns.synology.me ![Variable Entry](/assets/images/2020/12/20/cloud_console_variable.png)
+1. Expand RUNTIME, BUILD AND CONNECTIONS SETTINGS. Enter a new Runtime Environment variable named API_HOST and enter the domain name of the server that runs AudioStation i.e. my_server_dns.synology.me ![Variable Entry](/assets/images/2020/12/20/cloud_console_variable.png) *NEW* A second environment variable named API_PORT can be used to specify the port number for communicating to your Synology DSM, by default the port is 5001 - however best practice is to change this to a unique port number.  
 
 ## Testing
 
