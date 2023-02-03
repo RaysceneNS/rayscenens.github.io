@@ -3,6 +3,8 @@ title: "How-to use Google Assistant to control AudioStation on your home NAS"
 tags: ["Google Assistant", AudioStation, Synology]
 ---
 
+IMPORTANT! Google has decided to sunset [Conversational Actions on June 13, 2023](https://developers.google.com/assistant/ca-sunset), as a result this configuration in its current form will cease to operate at that time. 
+
 Like many folks who own a Synology NAS I watched with envy as folks in the Alexa universe received love from the development team at Synology to command and control playback of the media that they had placed into the AudioStation app, while those of us within the Google verse got nada. Time to take matters into my own hands. ![google_assistant](/assets/images/2020/12/20/audiostation_command.webp)
 
  In order to figure out how to make this work I would have to do some digging into how the [Alexa skill communicated with AudioStation](https://racineennis.ca/2020/12/19/AudioStation-GoogleAssistant-investigation).
